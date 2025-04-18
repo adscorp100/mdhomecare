@@ -1,17 +1,49 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import { Link } from "react-router-dom";
-import blogPosts from "../data/blogPosts.json";
+import { useEffect, useState } from "react";
 
-const createSlug = (title: string) => {
-  return title
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, '')
-    .replace(/\s+/g, '_');
-};
+// Define the BlogPost interface
+interface BlogPost {
+  title: string;
+  slug: string;
+  date: string;
+  description: string;
+  image?: string;
+  readTime: string;
+}
 
 const Blog = () => {
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch the blog post index
+    fetch('/data/blog/posts.json')
+      .then(response => response.json())
+      .then(data => {
+        setBlogPosts(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error loading blog posts:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center">
+            <p>Loading blog posts...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
@@ -22,8 +54,17 @@ const Blog = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post) => (
-            <Link key={post.title} to={`/blog/${createSlug(post.title)}`}>
+            <Link key={post.slug} to={`/blog/${post.slug}`}>
               <Card className="hover:shadow-lg transition-shadow h-full">
+                {post.image && (
+                  <div className="w-full h-48 overflow-hidden">
+                    <img 
+                      src={post.image} 
+                      alt={post.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
                 <CardHeader>
                   <CardTitle className="text-xl">{post.title}</CardTitle>
                   <CardDescription className="flex justify-between text-sm">

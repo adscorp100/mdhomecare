@@ -1,0 +1,58 @@
+/* Blog post typography styles */
+.prose h2 {
+  margin-top: 2.5rem !important;
+  margin-bottom: 1.5rem !important;
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  color: #111827 !important;
+}
+
+.prose h3 {
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  color: #1f2937 !important;
+}
+
+/* Ensure proper spacing between paragraphs and list items */
+.prose p, .prose ul, .prose ol {
+  margin-bottom: 1.25rem !important;
+}
+
+/* Enhanced list styling */
+.prose ul {
+  list-style-type: disc !important;
+  padding-left: 1.75rem !important;
+  margin-top: 1rem !important;
+}
+
+.prose ol {
+  list-style-type: decimal !important;
+  padding-left: 1.75rem !important;
+  margin-top: 1rem !important;
+}
+
+.prose ul li, .prose ol li {
+  margin-bottom: 0.75rem !important;
+  padding-left: 0.5rem !important;
+}
+
+/* Nested lists */
+.prose ul ul, .prose ol ol, .prose ul ol, .prose ol ul {
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* Ensure list item markers are visible and properly aligned */
+.prose ul li::marker {
+  color: #6b7280 !important;
+  font-size: 0.875em !important;
+}
+
+.prose ol li::marker {
+  color: #6b7280 !important;
+  font-weight: 500 !important;
+} 
