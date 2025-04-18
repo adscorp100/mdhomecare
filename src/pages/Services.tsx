@@ -1,7 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Navigation from "@/components/Navigation";
+import Layout from "@/components/Layout";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 // Define the Service interface
 interface Service {
@@ -13,6 +14,8 @@ interface Service {
 }
 
 const Services = () => {
+  useDocumentTitle('Services');
+  
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<string[]>([]);
@@ -46,20 +49,18 @@ const Services = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <Navigation />
+      <Layout>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
             <p>Loading services...</p>
           </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
+    <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h1>
@@ -112,7 +113,7 @@ const Services = () => {
           ))}
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

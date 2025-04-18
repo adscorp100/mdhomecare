@@ -1,9 +1,10 @@
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import Navigation from "@/components/Navigation";
+import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import "./BlogPost.css"; // Import custom CSS for blog formatting
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 // Define the full BlogPost interface
 interface BlogPost {
@@ -21,6 +22,9 @@ const BlogPost = () => {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  
+  // Set the document title with a placeholder while loading
+  useDocumentTitle(post ? post.title : 'Blog Post');
 
   useEffect(() => {
     if (slug) {
@@ -46,21 +50,19 @@ const BlogPost = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <Navigation />
+      <Layout>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
             <p>Loading blog post...</p>
           </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 
   if (error || !post) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <Navigation />
+      <Layout>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="mb-8">
             <Button variant="ghost" asChild>
@@ -74,13 +76,12 @@ const BlogPost = () => {
             <h1 className="text-2xl font-bold text-gray-900">Blog post not found</h1>
           </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
+    <Layout>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
           <Button variant="ghost" asChild>
@@ -113,7 +114,7 @@ const BlogPost = () => {
           ></div>
         </article>
       </div>
-    </div>
+    </Layout>
   );
 };
 
