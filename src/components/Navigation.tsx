@@ -1,5 +1,4 @@
-
-import { Home, FileText, ListCheck } from "lucide-react";
+import { Home, FileText, ListCheck, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -30,6 +29,12 @@ const Navigation = () => {
               <Link to="/blog" className="flex items-center gap-2">
                 <FileText className="h-4 w-4" />
                 Blog
+              </Link>
+            </Button>
+            <Button variant="ghost" asChild>
+              <Link to="/contact" className="flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                Contact
               </Link>
             </Button>
           </div>
