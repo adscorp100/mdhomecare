@@ -1,0 +1,86 @@
+{
+  "sydney": {
+    "state": "NSW",
+    "region": "Greater Sydney"
+  },
+  "burwood": {
+    "state": "NSW",
+    "region": "Inner West"
+  },
+  "parramatta": {
+    "state": "NSW",
+    "region": "Western Sydney"
+  },
+  "chatswood": {
+    "state": "NSW",
+    "region": "North Shore"
+  },
+  "bondi": {
+    "state": "NSW",
+    "region": "Eastern Suburbs"
+  },
+  "manly": {
+    "state": "NSW",
+    "region": "Northern Beaches"
+  },
+  "penrith": {
+    "state": "NSW",
+    "region": "Western Sydney"
+  },
+  "blacktown": {
+    "state": "NSW",
+    "region": "Western Sydney"
+  },
+  "liverpool": {
+    "state": "NSW",
+    "region": "South Western Sydney"
+  },
+  "cronulla": {
+    "state": "NSW",
+    "region": "Sutherland Shire"
+  },
+  "melbourne": {
+    "state": "VIC",
+    "region": "Greater Melbourne"
+  },
+  "brunswick": {
+    "state": "VIC",
+    "region": "Inner North"
+  },
+  "footscray": {
+    "state": "VIC",
+    "region": "Inner West"
+  },
+  "brighton": {
+    "state": "VIC",
+    "region": "Bayside"
+  },
+  "brisbane": {
+    "state": "QLD",
+    "region": "Greater Brisbane"
+  },
+  "gold-coast": {
+    "state": "QLD",
+    "region": "South East Queensland"
+  },
+  "perth": {
+    "state": "WA",
+    "region": "Greater Perth"
+  },
+  "adelaide": {
+    "state": "SA",
+    "region": "Greater Adelaide"
+  },
+  "hobart": {
+    "state": "TAS",
+    "region": "Greater Hobart"
+  },
+  "darwin": {
+    "state": "NT",
+    "region": "Top End"
+  },
+  "canberra": {
+    "state": "ACT",
+    "region": "Capital Region"
+  }
+} 

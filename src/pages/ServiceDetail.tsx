@@ -1,10 +1,11 @@
+import React, { useEffect, useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
 import "./BlogPost.css"; // Reuse the same CSS for content formatting
 import useDocumentTitle from "@/hooks/useDocumentTitle";
+import { getSuburbInfo, resolveServiceSlug, localizeContent } from "@/lib/localize";
 
 // Define the Service interface
 interface Service {
@@ -17,36 +18,80 @@ interface Service {
   date: string;
 }
 
+interface SuburbInfo {
+  state: string;
+  region: string;
+}
+
 const ServiceDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const [service, setService] = useState<Service | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [suburbInfo, setSuburbInfo] = useState<SuburbInfo | null>(null);
+  const [resolvedSlug, setResolvedSlug] = useState<{ baseSlug: string; suburb: string | null }>({ baseSlug: '', suburb: null });
   
   // Set the document title with a placeholder while loading
   useDocumentTitle(service ? service.title : 'Service Details');
 
   useEffect(() => {
-    if (slug) {
-      // Fetch the specific service
-      fetch(`/data/services/${slug}.json`)
-        .then(response => {
+    const loadService = async () => {
+      if (slug) {
+        try {
+          // Use resolveServiceSlug to handle both direct matches and suburb parsing
+          const slugData = await resolveServiceSlug(slug);
+          setResolvedSlug(slugData);
+          
+          // Load suburb info if we have a valid suburb
+          if (slugData.suburb) {
+            const info = await getSuburbInfo(slugData.suburb);
+            setSuburbInfo(info);
+          }
+          
+          // Fetch the base service
+          const response = await fetch(`/data/services/${slugData.baseSlug}.json`);
           if (!response.ok) {
             throw new Error('Service not found');
           }
-          return response.json();
-        })
-        .then(data => {
+          
+          const data = await response.json();
           setService(data);
           setLoading(false);
-        })
-        .catch(error => {
+        } catch (error) {
           console.error('Error loading service:', error);
           setError(true);
           setLoading(false);
-        });
-    }
+        }
+      }
+    };
+    
+    loadService();
   }, [slug]);
+
+  // Apply localization to service content if we have suburb info
+  const localizedService = useMemo(() => {
+    if (!service || !suburbInfo || !resolvedSlug.suburb) return service;
+    
+    const localizedTitle = service.title.replace(/(Sydney|Melbourne|Brisbane|Perth|Adelaide|Hobart|Darwin|Canberra)/g, 
+      resolvedSlug.suburb.charAt(0).toUpperCase() + resolvedSlug.suburb.slice(1));
+      
+    const localizedDescription = service.description.replace(/(Sydney|Melbourne|Brisbane|Perth|Adelaide|Hobart|Darwin|Canberra)/g, 
+      resolvedSlug.suburb.charAt(0).toUpperCase() + resolvedSlug.suburb.slice(1));
+      
+    const localizedContent = localizeContent(
+      service.content,
+      resolvedSlug.suburb,
+      suburbInfo.region,
+      suburbInfo.state
+    );
+    
+    return {
+      ...service,
+      title: localizedTitle,
+      description: localizedDescription,
+      content: localizedContent
+    };
+  }, [service, suburbInfo, resolvedSlug]);
 
   if (loading) {
     return (
@@ -60,7 +105,7 @@ const ServiceDetail = () => {
     );
   }
 
-  if (error || !service) {
+  if (error || !localizedService) {
     return (
       <Layout>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -93,25 +138,30 @@ const ServiceDetail = () => {
         </div>
         <article>
           <header className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">{service.title}</h1>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">{localizedService.title}</h1>
             <div className="flex gap-4">
               <span className="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">
-                {service.category}
+                {localizedService.category}
               </span>
+              {suburbInfo && (
+                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-sm">
+                  {suburbInfo.region}, {suburbInfo.state}
+                </span>
+              )}
             </div>
           </header>
-          {service.image && (
+          {localizedService.image && (
             <div className="mb-8">
               <img 
-                src={service.image} 
-                alt={service.title} 
+                src={localizedService.image} 
+                alt={localizedService.title} 
                 className="w-full h-auto rounded-lg shadow-md"
               />
             </div>
           )}
           <div 
             className="prose prose-lg max-w-none" 
-            dangerouslySetInnerHTML={{ __html: service.content }}
+            dangerouslySetInnerHTML={{ __html: localizedService.content }}
           ></div>
           
           <div className="mt-12 border-t border-gray-200 pt-8">

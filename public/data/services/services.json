@@ -1,5 +1,75 @@
 [
   {
+    "title": "Personal Care Services",
+    "slug": "personal-care",
+    "description": "Comprehensive personal care services tailored to your individual needs. Our trained support workers assist with daily activities, hygiene, medication management, and more to enhance your quality of life and independence.",
+    "image": "",
+    "category": "Daily Living Support"
+  },
+  {
+    "title": "Domestic Assistance Services",
+    "slug": "domestic-assistance",
+    "description": "Professional domestic assistance services to help maintain a clean, safe, and comfortable home environment. Our support workers assist with housekeeping, meal preparation, shopping, and other household tasks to enhance your quality of life.",
+    "image": "",
+    "category": "Daily Living Support"
+  },
+  {
+    "title": "Community Access Support Services",
+    "slug": "community-access-support",
+    "description": "Comprehensive community access support services in Australia, connecting you with community groups, activities, and essential access services. We are a community services organisation dedicated to community engagement.",
+    "image": "",
+    "category": "Community Support"
+  },
+  {
+    "title": "NDIS Specialist Support Coordination",
+    "slug": "ndis-specialist-support-coordination",
+    "description": "Expert Level 3 Support Coordination services helping NDIS participants navigate complex support needs and achieve their goals.",
+    "image": "https://cdn.prod.website-files.com/67ba898f18b9815458c46343/67baa2c6b21db79b34b31c4f_dominik-lange-VUOiQW4OeLI-unsplash.webp",
+    "category": "Support Coordination"
+  },
+  {
+    "title": "Respite Care Services",
+    "slug": "respite-care",
+    "description": "Reliable respite care services providing temporary relief for primary caregivers. Our professional respite support workers offer high-quality care for your loved one while you take a well-deserved break.",
+    "image": "",
+    "category": "Caregiver Support"
+  },
+  {
+    "title": "Transport Services",
+    "slug": "transport-services",
+    "description": "Reliable and accessible transport services for people with disabilities. Our professional drivers and specially equipped vehicles ensure safe, comfortable, and on-time transportation to appointments, activities, and community events.",
+    "image": "",
+    "category": "Mobility Support"
+  },
+  {
+    "title": "Therapy Services",
+    "slug": "therapy-services",
+    "description": "Comprehensive therapy services delivered by qualified professionals. Our therapy team offers physiotherapy, occupational therapy, speech therapy, and more to help you achieve your health, mobility, and independence goals.",
+    "image": "",
+    "category": "Health Services"
+  },
+  {
+    "title": "Specialist Disability Accommodation (SDA)",
+    "slug": "specialist-disability-accommodation",
+    "description": "NDIS-approved Specialist Disability Accommodation designed for individuals with extreme functional impairment or very high support needs. Our SDA properties provide accessible, safe, and tailored living environments to enhance independence and quality of life.",
+    "image": "",
+    "category": "Accommodation"
+  },
+  {
+    "title": "SIL Services",
+    "slug": "sil-services-sydney",
+    "description": "Connect with trusted Supported Independent Living providers delivering specialized NDIS disability accommodation and support services.",
+    "image": "",
+    "category": "Supported Living"
+  },
+  {
+    "title": "Support Workers",
+    "slug": "support-workers",
+    "description": "Looking for a rewarding career as a support worker? Join our team and make a real difference in people's lives.",
+    "image": "https://cdn.prod.website-files.com/67ba898f18b9815458c46343/67baad9bd87ba750e0be84ae_Screenshot%202025-02-23%20at%204.08.45%E2%80%AFpm.webp",
+    "category": "Careers"
+  },
+  {
     "title": "Disability Home Support Services",
     "slug": "disability-home-support-services",
     "description": "Comprehensive in-home disability support services tailored to your needs. NDIS-registered provider delivering professional care and support in the comfort of your home.",
@@ -7,16 +77,9 @@
     "category": "Disability Support"
   },
   {
-    "title": "Disability Services Melbourne",
-    "slug": "disability-services-melbourne",
-    "description": "Are you or a loved one looking for reliable, compassionate disability services in Melbourne? Our specialized in-home disability care services provide personalized support that empowers individuals to live independently while receiving expert care in the comfort of their own homes.",
-    "image": "",
-    "category": "Disability Support"
-  },
-  {
-    "title": "Disability Services Sydney",
-    "slug": "disability-services-sydney",
-    "description": "Looking for trusted disability services in Sydney? Our specialized in-home disability care services deliver compassionate support across Greater Sydney, from Bankstown to the Sutherland Shire. We help individuals live independently while receiving expert care in their own homes, all while staying connected to Sydney's vibrant community.",
+    "title": "Disability Services",
+    "slug": "disability-services",
+    "description": "Are you or a loved one looking for reliable, compassionate disability services? Our specialized in-home disability care services provide personalized support that empowers individuals to live independently while receiving expert care in the comfort of their own homes.",
     "image": "",
     "category": "Disability Support"
   },
@@ -28,27 +91,6 @@
     "category": "Training"
   },
   {
-    "title": "NDIS Specialist Support Coordination",
-    "slug": "ndis-specialist-support-coordination",
-    "description": "Expert Level 3 Support Coordination services helping NDIS participants navigate complex support needs and achieve their goals.",
-    "image": "https://cdn.prod.website-files.com/67ba898f18b9815458c46343/67baa2c6b21db79b34b31c4f_dominik-lange-VUOiQW4OeLI-unsplash.webp",
-    "category": "Support Coordination"
-  },
-  {
-    "title": "SIL Providers Melbourne",
-    "slug": "sil-providers-melbourne",
-    "description": "Connect with leading Supported Independent Living providers across Melbourne offering specialized NDIS disability accommodation and personalized support services.",
-    "image": "",
-    "category": "Supported Living"
-  },
-  {
-    "title": "SIL Services Sydney",
-    "slug": "sil-services-sydney",
-    "description": "Connect with trusted Supported Independent Living providers across Sydney delivering specialized NDIS disability accommodation and support services.",
-    "image": "",
-    "category": "Supported Living"
-  },
-  {
     "title": "Clinical Care",
     "slug": "clinical-care",
     "description": "Professional clinical care services delivered by qualified healthcare professionals. Comprehensive clinical support tailored to individual health needs in a caring and responsive environment.",
@@ -56,17 +98,10 @@
     "category": "Health Services"
   },
   {
-    "title": "Aged Care Home Modifications & Maintenance Sydney",
-    "slug": "aged-care-home-modifications-maintenance-sydney",
-    "description": "Specialized aged care home modifications and home maintenance services for seniors in Sydney. Reliable house repairs, metro maintenance, and tailored support from a trusted aged care maintenance company.",
+    "title": "Aged Care Home Modifications & Maintenance",
+    "slug": "aged-care-home-modifications-maintenance",
+    "description": "Specialized aged care home modifications and home maintenance services for seniors. Reliable house repairs, maintenance, and tailored support from a trusted aged care maintenance company.",
     "image": "",
     "category": "Aged Care Support"
-  },
-  {
-    "title": "Community Access Support Services",
-    "slug": "community-access-support",
-    "description": "Comprehensive community access support services in Australia, connecting you with community groups, activities, and essential access services. We are a community services organisation dedicated to community engagement.",
-    "image": "",
-    "category": "Community Support"
   }
 ] 
