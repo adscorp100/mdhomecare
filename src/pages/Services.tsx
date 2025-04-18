@@ -20,14 +20,40 @@ interface SuburbInfo {
 }
 
 const Services = () => {
-  useDocumentTitle('Services');
-  
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [suburbs, setSuburbs] = useState<Record<string, SuburbInfo>>({});
   const [selectedSuburb, setSelectedSuburb] = useState<string>("all");
+  
+  // Create a formatted suburb name for display
+  const formattedSuburbName = selectedSuburb && selectedSuburb !== "all" 
+    ? selectedSuburb.split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+    : "Australia";
+  
+  // Replace {suburb} placeholder with the selected suburb name
+  const replaceSuburbPlaceholder = (text: string): string => {
+    if (selectedSuburb && selectedSuburb !== "all") {
+      // Properly capitalize the suburb name (each word if hyphenated)
+      const capitalizedSuburb = selectedSuburb.split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+      return text.replace(/\{suburb\}/g, capitalizedSuburb);
+    }
+    // Default to Australia if no suburb selected
+    return text.replace(/\{suburb\}/g, "Australia");
+  };
+  
+  // Set document title based on selected suburb
+  const documentTitle = 
+    selectedSuburb && selectedSuburb !== "all"
+      ? `Services in ${formattedSuburbName}`
+      : 'Services';
+  
+  useDocumentTitle(documentTitle);
   
   useEffect(() => {
     // Fetch the services index
@@ -75,16 +101,6 @@ const Services = () => {
       return `/services/${slug}-${selectedSuburb}`;
     }
     return `/services/${slug}`;
-  };
-
-  // Replace {suburb} placeholder with the selected suburb name
-  const replaceSuburbPlaceholder = (text: string): string => {
-    if (selectedSuburb && selectedSuburb !== "all") {
-      // Capitalize the suburb name
-      const capitalizedSuburb = selectedSuburb.charAt(0).toUpperCase() + selectedSuburb.slice(1);
-      return text.replace(/\{suburb\}/g, capitalizedSuburb);
-    }
-    return text;
   };
 
   if (loading) {
@@ -135,7 +151,9 @@ const Services = () => {
                 <SelectItem value="all">All locations</SelectItem>
                 {Object.entries(suburbs).map(([slug, info]) => (
                   <SelectItem key={slug} value={slug}>
-                    {slug.charAt(0).toUpperCase() + slug.slice(1)} ({info.region})
+                    {slug.split('-')
+                      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                      .join(' ')} ({info.region})
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -164,7 +182,9 @@ const Services = () => {
                     </span>
                     {selectedSuburb && selectedSuburb !== "all" && (
                       <span className="ml-2 inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-xs">
-                        {selectedSuburb.charAt(0).toUpperCase() + selectedSuburb.slice(1)}
+                        {selectedSuburb.split('-')
+                          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                          .join(' ')}
                       </span>
                     )}
                   </CardDescription>

@@ -46,9 +46,6 @@ const ServiceDetail = () => {
   const [suburbInfo, setSuburbInfo] = useState<SuburbInfo | null>(null);
   const [resolvedSlug, setResolvedSlug] = useState<{ baseSlug: string; suburb: string | null }>({ baseSlug: '', suburb: null });
   const [relatedSuburbs, setRelatedSuburbs] = useState<RelatedSuburb[]>([]);
-  
-  // Set the document title with a placeholder while loading
-  useDocumentTitle(service ? service.title : 'Service Details');
 
   useEffect(() => {
     const loadService = async () => {
@@ -94,7 +91,9 @@ const ServiceDetail = () => {
     const effectiveRegion = region || DEFAULT_REGION;
     const effectiveState = state || DEFAULT_STATE;
     
-    const capitalizedSuburb = effectiveSuburb.charAt(0).toUpperCase() + effectiveSuburb.slice(1);
+    const capitalizedSuburb = effectiveSuburb.split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
     
     let processed = text
       .replace(new RegExp(SUBURB_PLACEHOLDER, 'g'), capitalizedSuburb)
@@ -160,7 +159,9 @@ const ServiceDetail = () => {
     if (!localizedService) return '';
     
     if (suburbInfo && resolvedSlug.suburb) {
-      const suburbName = resolvedSlug.suburb.charAt(0).toUpperCase() + resolvedSlug.suburb.slice(1);
+      const suburbName = resolvedSlug.suburb.split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
       // If title already contains suburb name, use as is
       if (localizedService.title.includes(suburbName)) {
         return localizedService.title;
@@ -172,6 +173,16 @@ const ServiceDetail = () => {
     
     return localizedService.title;
   };
+
+  // Calculate document title
+  const documentTitle = useMemo(() => {
+    if (loading) return 'Loading...';
+    if (error || !localizedService) return 'Service Not Found';
+    return getPageTitle();
+  }, [loading, error, localizedService]);
+
+  // Set document title
+  useDocumentTitle(documentTitle);
 
   if (loading) {
     return (
@@ -226,7 +237,9 @@ const ServiceDetail = () => {
               {suburbInfo && (
                 <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-sm flex items-center gap-1">
                   <MapPin className="h-3 w-3" /> 
-                  {resolvedSlug.suburb?.charAt(0).toUpperCase() + resolvedSlug.suburb?.slice(1)}, {suburbInfo.region}
+                  {resolvedSlug.suburb?.split('-')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' ')}, {suburbInfo.region}
                 </span>
               )}
             </div>

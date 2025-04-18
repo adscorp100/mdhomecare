@@ -98,11 +98,12 @@ export async function resolveServiceSlug(requestedSlug: string): Promise<{ baseS
 
 export async function parseLocalizedSlug(slug: string): Promise<{ baseSlug: string; suburb: string | null }> {
   const parts = slug.split('-');
+  const suburbs = await getSuburbsData();
   
-  // If we have at least two parts, check if the last part is a known suburb
+  // If we have at least two parts, check various possible suburb combinations
   if (parts.length >= 2) {
+    // First, try if the last part is a known suburb
     const potentialSuburb = parts[parts.length - 1];
-    const suburbs = await getSuburbsData();
     
     // Only treat as suburb if it's in our list
     if (suburbs[potentialSuburb.toLowerCase()]) {
@@ -115,6 +116,22 @@ export async function parseLocalizedSlug(slug: string): Promise<{ baseSlug: stri
       };
     }
     
+    // Check for hyphenated suburb names like "gold-coast"
+    if (parts.length >= 3) {
+      // Try the last two parts as a hyphenated suburb name
+      const potentialHyphenatedSuburb = `${parts[parts.length - 2]}-${parts[parts.length - 1]}`;
+      
+      if (suburbs[potentialHyphenatedSuburb.toLowerCase()]) {
+        const serviceParts = parts.slice(0, -2);
+        const baseSlug = serviceParts.join('-');
+        
+        return {
+          baseSlug,
+          suburb: potentialHyphenatedSuburb.toLowerCase()
+        };
+      }
+    }
+    
     // Check for support-workers-in-<suburb> pattern
     if (parts.length >= 3 && parts[0] === 'support' && parts[1] === 'workers' && parts[2] === 'in') {
       const inSuburb = parts[3]; // Get the suburb after "in"
@@ -123,6 +140,17 @@ export async function parseLocalizedSlug(slug: string): Promise<{ baseSlug: stri
           baseSlug: 'support-workers',
           suburb: inSuburb.toLowerCase()
         };
+      }
+      
+      // Check for hyphenated suburb after "in" (support-workers-in-gold-coast)
+      if (parts.length >= 5) {
+        const potentialHyphenatedInSuburb = `${parts[3]}-${parts[4]}`;
+        if (suburbs[potentialHyphenatedInSuburb.toLowerCase()]) {
+          return {
+            baseSlug: 'support-workers',
+            suburb: potentialHyphenatedInSuburb.toLowerCase()
+          };
+        }
       }
     }
   }
@@ -159,8 +187,10 @@ export function localizeContent(content: string, suburb: string | null, region: 
   const effectiveRegion = region || DEFAULT_REGION;
   const effectiveState = state || DEFAULT_STATE;
   
-  // Replace instances of "Sydney" with the suburb name (preserving case)
-  const capitalizedSuburb = effectiveSuburb.charAt(0).toUpperCase() + effectiveSuburb.slice(1);
+  // Properly capitalize the suburb name (each word if hyphenated)
+  const capitalizedSuburb = effectiveSuburb.split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
   
   // Replace placeholders
   let localizedContent = content
@@ -200,7 +230,9 @@ export async function getRelatedSuburbs(currentSuburb: string | null, limit: num
       })
       .map(([slug, _]) => ({
         slug,
-        name: slug.charAt(0).toUpperCase() + slug.slice(1)
+        name: slug.split('-')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ')
       }))
       .slice(0, limit);
       

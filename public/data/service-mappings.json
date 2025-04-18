@@ -22,5 +22,9 @@
   "sil-providers-melbourne": {
     "baseSlug": "sil-services",
     "defaultLocation": "melbourne"
+  },
+  "domestic-assistance-gold-coast": {
+    "baseSlug": "domestic-assistance",
+    "defaultLocation": "gold-coast"
   }
 } 
