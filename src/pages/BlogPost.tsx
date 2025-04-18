@@ -5,9 +5,16 @@ import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import blogPosts from "../data/blogPosts.json";
 
+const createSlug = (title: string) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '')
+    .replace(/\s+/g, '_');
+};
+
 const BlogPost = () => {
   const { title } = useParams();
-  const post = blogPosts.find((post) => post.title === decodeURIComponent(title));
+  const post = blogPosts.find((post) => createSlug(post.title) === title);
 
   if (!post) {
     return (

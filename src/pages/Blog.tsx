@@ -4,6 +4,13 @@ import Navigation from "@/components/Navigation";
 import { Link } from "react-router-dom";
 import blogPosts from "../data/blogPosts.json";
 
+const createSlug = (title: string) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '')
+    .replace(/\s+/g, '_');
+};
+
 const Blog = () => {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -15,7 +22,7 @@ const Blog = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post) => (
-            <Link key={post.title} to={`/blog/${encodeURIComponent(post.title)}`}>
+            <Link key={post.title} to={`/blog/${createSlug(post.title)}`}>
               <Card className="hover:shadow-lg transition-shadow h-full">
                 <CardHeader>
                   <CardTitle className="text-xl">{post.title}</CardTitle>
