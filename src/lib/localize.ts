@@ -143,17 +143,70 @@ export function parseLocalizedSlugSync(slug: string): { service: string; suburb:
   };
 }
 
-export function localizeContent(content: string, suburb: string, region: string, state: string): string {
-  // Replace instances of "Sydney" with the suburb name (preserving case)
-  const capitalizedSuburb = suburb.charAt(0).toUpperCase() + suburb.slice(1);
+// Placeholder patterns
+const SUBURB_PLACEHOLDER = "{suburb}";
+const REGION_PLACEHOLDER = "{region}";
+const STATE_PLACEHOLDER = "{state}";
+
+// Default values for when no suburb is specified
+const DEFAULT_SUBURB = "Australia";
+const DEFAULT_REGION = "Australia";
+const DEFAULT_STATE = "Australia";
+
+export function localizeContent(content: string, suburb: string | null, region: string | null, state: string | null): string {
+  // Use default values if parameters are null
+  const effectiveSuburb = suburb || DEFAULT_SUBURB;
+  const effectiveRegion = region || DEFAULT_REGION;
+  const effectiveState = state || DEFAULT_STATE;
   
-  // Replace whole words of "Sydney" with the suburb name
-  let localizedContent = content.replace(/\b(Sydney|Melbourne|Brisbane|Perth|Adelaide|Hobart|Darwin|Canberra)\b/g, capitalizedSuburb);
+  // Replace instances of "Sydney" with the suburb name (preserving case)
+  const capitalizedSuburb = effectiveSuburb.charAt(0).toUpperCase() + effectiveSuburb.slice(1);
+  
+  // Replace placeholders
+  let localizedContent = content
+    .replace(new RegExp(SUBURB_PLACEHOLDER, 'g'), capitalizedSuburb)
+    .replace(new RegExp(REGION_PLACEHOLDER, 'g'), effectiveRegion)
+    .replace(new RegExp(STATE_PLACEHOLDER, 'g'), effectiveState);
+  
+  // Replace whole words of major city names with the suburb name
+  if (suburb) { // Only replace city names if we have a specific suburb
+    localizedContent = localizedContent.replace(/\b(Sydney|Melbourne|Brisbane|Perth|Adelaide|Hobart|Darwin|Canberra)\b/g, capitalizedSuburb);
+  }
   
   // Replace references to regions
   if (region) {
-    localizedContent = localizedContent.replace(/(?:Greater Sydney|Greater Melbourne|Greater Brisbane|Greater Perth|Greater Adelaide|Greater Hobart|Top End|Capital Region)/g, region);
+    localizedContent = localizedContent.replace(/(?:Greater Sydney|Greater Melbourne|Greater Brisbane|Greater Perth|Greater Adelaide|Greater Hobart|Top End|Capital Region)/g, effectiveRegion);
   }
   
   return localizedContent;
+}
+
+// Get suburbs in the same region as the current suburb
+export async function getRelatedSuburbs(currentSuburb: string | null, limit: number = 5): Promise<{slug: string, name: string}[]> {
+  if (!currentSuburb) return [];
+  
+  try {
+    const suburbs = await getSuburbsData();
+    const current = suburbs[currentSuburb.toLowerCase()];
+    
+    if (!current) return [];
+    
+    // Find suburbs in the same region and state
+    const relatedSuburbs = Object.entries(suburbs)
+      .filter(([slug, info]) => {
+        return slug !== currentSuburb.toLowerCase() && 
+               info.region === current.region && 
+               info.state === current.state;
+      })
+      .map(([slug, _]) => ({
+        slug,
+        name: slug.charAt(0).toUpperCase() + slug.slice(1)
+      }))
+      .slice(0, limit);
+      
+    return relatedSuburbs;
+  } catch (error) {
+    console.error('Error getting related suburbs:', error);
+    return [];
+  }
 } 

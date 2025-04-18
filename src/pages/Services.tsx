@@ -77,6 +77,16 @@ const Services = () => {
     return `/services/${slug}`;
   };
 
+  // Replace {suburb} placeholder with the selected suburb name
+  const replaceSuburbPlaceholder = (text: string): string => {
+    if (selectedSuburb && selectedSuburb !== "all") {
+      // Capitalize the suburb name
+      const capitalizedSuburb = selectedSuburb.charAt(0).toUpperCase() + selectedSuburb.slice(1);
+      return text.replace(/\{suburb\}/g, capitalizedSuburb);
+    }
+    return text;
+  };
+
   if (loading) {
     return (
       <Layout>
@@ -141,13 +151,13 @@ const Services = () => {
                   <div className="w-full h-48 overflow-hidden">
                     <img 
                       src={service.image} 
-                      alt={service.title} 
+                      alt={replaceSuburbPlaceholder(service.title)} 
                       className="w-full h-full object-cover"
                     />
                   </div>
                 )}
                 <CardHeader>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
+                  <CardTitle className="text-xl">{replaceSuburbPlaceholder(service.title)}</CardTitle>
                   <CardDescription className="text-sm">
                     <span className="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
                       {service.category}
@@ -160,7 +170,7 @@ const Services = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600">{service.description}</p>
+                  <p className="text-gray-600">{replaceSuburbPlaceholder(service.description)}</p>
                 </CardContent>
               </Card>
             </Link>

@@ -1,106 +1,106 @@
 [
   {
-    "title": "Personal Care Services",
+    "title": "Personal Care Services in {suburb}",
     "slug": "personal-care",
-    "description": "Comprehensive personal care services tailored to your individual needs. Our trained support workers assist with daily activities, hygiene, medication management, and more to enhance your quality of life and independence.",
+    "description": "Comprehensive personal care services in {suburb} tailored to your individual needs. Our trained support workers assist with daily activities, hygiene, medication management, and more to enhance your quality of life and independence.",
     "image": "",
     "category": "Daily Living Support"
   },
   {
-    "title": "Domestic Assistance Services",
+    "title": "Domestic Assistance Services in {suburb}",
     "slug": "domestic-assistance",
-    "description": "Professional domestic assistance services to help maintain a clean, safe, and comfortable home environment. Our support workers assist with housekeeping, meal preparation, shopping, and other household tasks to enhance your quality of life.",
+    "description": "Professional domestic assistance services in {suburb} to help maintain a clean, safe, and comfortable home environment. Our support workers assist with housekeeping, meal preparation, shopping, and other household tasks to enhance your quality of life.",
     "image": "",
     "category": "Daily Living Support"
   },
   {
-    "title": "Community Access Support Services",
+    "title": "Community Access Support Services in {suburb}",
     "slug": "community-access-support",
-    "description": "Comprehensive community access support services in Australia, connecting you with community groups, activities, and essential access services. We are a community services organisation dedicated to community engagement.",
+    "description": "Comprehensive community access support services in {suburb}, connecting you with community groups, activities, and essential access services. We are a community services organisation dedicated to community engagement throughout {suburb}.",
     "image": "",
     "category": "Community Support"
   },
   {
-    "title": "NDIS Specialist Support Coordination",
+    "title": "NDIS Specialist Support Coordination in {suburb}",
     "slug": "ndis-specialist-support-coordination",
-    "description": "Expert Level 3 Support Coordination services helping NDIS participants navigate complex support needs and achieve their goals.",
+    "description": "Expert Level 3 Support Coordination services helping NDIS participants in {suburb} navigate complex support needs and achieve their goals.",
     "image": "https://cdn.prod.website-files.com/67ba898f18b9815458c46343/67baa2c6b21db79b34b31c4f_dominik-lange-VUOiQW4OeLI-unsplash.webp",
     "category": "Support Coordination"
   },
   {
-    "title": "Respite Care Services",
+    "title": "Respite Care Services in {suburb}",
     "slug": "respite-care",
-    "description": "Reliable respite care services providing temporary relief for primary caregivers. Our professional respite support workers offer high-quality care for your loved one while you take a well-deserved break.",
+    "description": "Reliable respite care services in {suburb} providing temporary relief for primary caregivers. Our professional respite support workers offer high-quality care for your loved one while you take a well-deserved break.",
     "image": "",
     "category": "Caregiver Support"
   },
   {
-    "title": "Transport Services",
+    "title": "Transport Services in {suburb}",
     "slug": "transport-services",
-    "description": "Reliable and accessible transport services for people with disabilities. Our professional drivers and specially equipped vehicles ensure safe, comfortable, and on-time transportation to appointments, activities, and community events.",
+    "description": "Reliable and accessible transport services for people with disabilities in {suburb}. Our professional drivers and specially equipped vehicles ensure safe, comfortable, and on-time transportation to appointments, activities, and community events.",
     "image": "",
     "category": "Mobility Support"
   },
   {
-    "title": "Therapy Services",
+    "title": "Therapy Services in {suburb}",
     "slug": "therapy-services",
-    "description": "Comprehensive therapy services delivered by qualified professionals. Our therapy team offers physiotherapy, occupational therapy, speech therapy, and more to help you achieve your health, mobility, and independence goals.",
+    "description": "Comprehensive therapy services in {suburb} delivered by qualified professionals. Our therapy team offers physiotherapy, occupational therapy, speech therapy, and more to help you achieve your health, mobility, and independence goals.",
     "image": "",
     "category": "Health Services"
   },
   {
-    "title": "Specialist Disability Accommodation (SDA)",
+    "title": "Specialist Disability Accommodation (SDA) in {suburb}",
     "slug": "specialist-disability-accommodation",
-    "description": "NDIS-approved Specialist Disability Accommodation designed for individuals with extreme functional impairment or very high support needs. Our SDA properties provide accessible, safe, and tailored living environments to enhance independence and quality of life.",
+    "description": "NDIS-approved Specialist Disability Accommodation in {suburb} designed for individuals with extreme functional impairment or very high support needs. Our SDA properties provide accessible, safe, and tailored living environments to enhance independence and quality of life.",
     "image": "",
     "category": "Accommodation"
   },
   {
-    "title": "SIL Services",
+    "title": "SIL Services in {suburb}",
     "slug": "sil-services-sydney",
-    "description": "Connect with trusted Supported Independent Living providers delivering specialized NDIS disability accommodation and support services.",
+    "description": "Connect with trusted Supported Independent Living providers in {suburb} delivering specialized NDIS disability accommodation and support services.",
     "image": "",
     "category": "Supported Living"
   },
   {
-    "title": "Support Workers",
+    "title": "Support Workers in {suburb}",
     "slug": "support-workers",
-    "description": "Looking for a rewarding career as a support worker? Join our team and make a real difference in people's lives.",
+    "description": "Looking for a rewarding career as a support worker in {suburb}? Join our team and make a real difference in people's lives throughout the {suburb} community.",
     "image": "https://cdn.prod.website-files.com/67ba898f18b9815458c46343/67baad9bd87ba750e0be84ae_Screenshot%202025-02-23%20at%204.08.45%E2%80%AFpm.webp",
     "category": "Careers"
   },
   {
-    "title": "Disability Home Support Services",
+    "title": "Disability Home Support Services in {suburb}",
     "slug": "disability-home-support-services",
-    "description": "Comprehensive in-home disability support services tailored to your needs. NDIS-registered provider delivering professional care and support in the comfort of your home.",
+    "description": "Comprehensive in-home disability support services in {suburb} tailored to your needs. NDIS-registered provider delivering professional care and support in the comfort of your home.",
     "image": "",
     "category": "Disability Support"
   },
   {
-    "title": "Disability Services",
+    "title": "Disability Services in {suburb}",
     "slug": "disability-services",
-    "description": "Are you or a loved one looking for reliable, compassionate disability services? Our specialized in-home disability care services provide personalized support that empowers individuals to live independently while receiving expert care in the comfort of their own homes.",
+    "description": "Are you or a loved one looking for reliable, compassionate disability services in {suburb}? Our specialized in-home disability care services provide personalized support that empowers individuals to live independently while receiving expert care in the comfort of their own homes.",
     "image": "",
     "category": "Disability Support"
   },
   {
-    "title": "NDIS Behaviour Support Practitioner Training",
+    "title": "NDIS Behaviour Support Practitioner Training in {suburb}",
     "slug": "ndis-behaviour-support-practitioner-training",
-    "description": "Looking to start your career as a Behaviour Support Practitioner? Our comprehensive guide covers everything you need to know about qualifications, training, and NDIS registration requirements.",
+    "description": "Looking to start your career as a Behaviour Support Practitioner in {suburb}? Our comprehensive guide covers everything you need to know about qualifications, training, and NDIS registration requirements for working in {suburb}.",
     "image": "https://cdn.prod.website-files.com/67ba898f18b9815458c46343/67ba988bb21db79b34ae84b3_rollz-international-Z0sXrfn_ejs-unsplash.webp",
     "category": "Training"
   },
   {
-    "title": "Clinical Care",
+    "title": "Clinical Care Services in {suburb}",
     "slug": "clinical-care",
-    "description": "Professional clinical care services delivered by qualified healthcare professionals. Comprehensive clinical support tailored to individual health needs in a caring and responsive environment.",
+    "description": "Professional clinical care services delivered by qualified healthcare professionals in {suburb}. Comprehensive clinical support tailored to individual health needs in a caring and responsive environment.",
     "image": "",
     "category": "Health Services"
   },
   {
-    "title": "Aged Care Home Modifications & Maintenance",
+    "title": "Aged Care Home Modifications & Maintenance in {suburb}",
     "slug": "aged-care-home-modifications-maintenance",
-    "description": "Specialized aged care home modifications and home maintenance services for seniors. Reliable house repairs, maintenance, and tailored support from a trusted aged care maintenance company.",
+    "description": "Specialized aged care home modifications and home maintenance services for seniors in {suburb}. Reliable house repairs, maintenance, and tailored support from a trusted aged care maintenance company.",
     "image": "",
     "category": "Aged Care Support"
   }
