@@ -47,5 +47,26 @@
     "description": "Connect with trusted Supported Independent Living providers across Sydney delivering specialized NDIS disability accommodation and support services.",
     "image": "",
     "category": "Supported Living"
+  },
+  {
+    "title": "Clinical Care",
+    "slug": "clinical-care",
+    "description": "Professional clinical care services delivered by qualified healthcare professionals. Comprehensive clinical support tailored to individual health needs in a caring and responsive environment.",
+    "image": "",
+    "category": "Health Services"
+  },
+  {
+    "title": "Aged Care Home Modifications & Maintenance Sydney",
+    "slug": "aged-care-home-modifications-maintenance-sydney",
+    "description": "Specialized aged care home modifications and home maintenance services for seniors in Sydney. Reliable house repairs, metro maintenance, and tailored support from a trusted aged care maintenance company.",
+    "image": "",
+    "category": "Aged Care Support"
+  },
+  {
+    "title": "Community Access Support Services",
+    "slug": "community-access-support",
+    "description": "Comprehensive community access support services in Australia, connecting you with community groups, activities, and essential access services. We are a community services organisation dedicated to community engagement.",
+    "image": "",
+    "category": "Community Support"
   }
 ] 
