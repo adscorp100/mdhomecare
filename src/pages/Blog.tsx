@@ -1,27 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
-
-const blogPosts = [
-  {
-    title: "Understanding Home Healthcare Options",
-    date: "2025-04-15",
-    description: "A comprehensive guide to different types of home healthcare services available for your loved ones.",
-    readTime: "5 min read",
-  },
-  {
-    title: "The Benefits of Personal Care Services",
-    date: "2025-04-10",
-    description: "Discover how personal care services can improve quality of life for seniors and those with disabilities.",
-    readTime: "4 min read",
-  },
-  {
-    title: "Choosing the Right Caregiver",
-    date: "2025-04-05",
-    description: "Important factors to consider when selecting a caregiver for your family member.",
-    readTime: "6 min read",
-  },
-];
+import blogPosts from "../data/blogPosts.json";
 
 const Blog = () => {
   return (

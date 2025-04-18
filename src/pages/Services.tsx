@@ -2,29 +2,14 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import { Heart, Home, Clock, UserCheck } from "lucide-react";
+import services from "../data/services.json";
 
-const services = [
-  {
-    title: "Personal Care",
-    description: "Assistance with daily activities including bathing, dressing, and grooming.",
-    icon: Heart,
-  },
-  {
-    title: "Home Healthcare",
-    description: "Professional medical care services provided in the comfort of your home.",
-    icon: Home,
-  },
-  {
-    title: "24/7 Care",
-    description: "Round-the-clock care and supervision for those who need continuous support.",
-    icon: Clock,
-  },
-  {
-    title: "Companion Care",
-    description: "Friendly companionship and assistance with daily activities and errands.",
-    icon: UserCheck,
-  },
-];
+const iconMap = {
+  Heart,
+  Home,
+  Clock,
+  UserCheck,
+};
 
 const Services = () => {
   return (
@@ -36,21 +21,24 @@ const Services = () => {
           <p className="text-xl text-gray-600">Comprehensive home care solutions for your loved ones</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {services.map((service) => (
-            <Card key={service.title} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex items-center gap-4">
-                  <div className="p-2 bg-[#E5DEFF] rounded-lg">
-                    <service.icon className="h-6 w-6 text-[#8B5CF6]" />
+          {services.map((service) => {
+            const Icon = iconMap[service.icon as keyof typeof iconMap];
+            return (
+              <Card key={service.title} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center gap-4">
+                    <div className="p-2 bg-[#E5DEFF] rounded-lg">
+                      <Icon className="h-6 w-6 text-[#8B5CF6]" />
+                    </div>
+                    <CardTitle>{service.title}</CardTitle>
                   </div>
-                  <CardTitle>{service.title}</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">{service.description}</CardDescription>
-              </CardContent>
-            </Card>
-          ))}
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base">{service.description}</CardDescription>
+                </CardContent>
+              </Card>
+            )
+          })}
         </div>
       </div>
     </div>
