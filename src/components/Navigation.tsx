@@ -41,7 +41,8 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold text-[#0EA5E9] hover:text-[#0c8bc7]">
+            <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-[#0EA5E9] hover:text-[#0c8bc7]">
+              <img src="/logo.svg" alt="MD Homecare Logo" className="h-8 w-8" />
               MD Homecare
             </Link>
           </div>

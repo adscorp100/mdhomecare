@@ -10,7 +10,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-[#0EA5E9]">MD Homecare</h3>
+            <div className="flex items-center mb-4">
+              <img src="/logo.svg" alt="MD Homecare Logo" className="h-6 mr-2" />
+              <h3 className="text-xl font-semibold text-[#0EA5E9]">MD Homecare</h3>
+            </div>
             <p className="mb-4 text-gray-300">Providing compassionate and professional home care services to enhance the quality of life for our clients.</p>
           </div>
           
