@@ -1,6 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
+import { Link } from "react-router-dom";
 import blogPosts from "../data/blogPosts.json";
 
 const Blog = () => {
@@ -14,20 +15,20 @@ const Blog = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post) => (
-            <Card key={post.title} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="text-xl">{post.title}</CardTitle>
-                <CardDescription>
-                  <div className="flex justify-between text-sm">
+            <Link key={post.title} to={`/blog/${encodeURIComponent(post.title)}`}>
+              <Card className="hover:shadow-lg transition-shadow h-full">
+                <CardHeader>
+                  <CardTitle className="text-xl">{post.title}</CardTitle>
+                  <CardDescription className="flex justify-between text-sm">
                     <span>{post.date}</span>
                     <span>{post.readTime}</span>
-                  </div>
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">{post.description}</p>
-              </CardContent>
-            </Card>
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">{post.description}</p>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>
