@@ -34,6 +34,21 @@ interface TocHeading {
   level: number;
 }
 
+// Helper function to abbreviate heading text
+const abbreviateHeadingText = (text: string, maxLength: number = 35): string => {
+  if (text.length <= maxLength) return text;
+  
+  // Try to cut at a word boundary
+  const truncated = text.substring(0, maxLength);
+  const lastSpaceIndex = truncated.lastIndexOf(' ');
+  
+  if (lastSpaceIndex > maxLength * 0.7) { // Only cut at word if it's not too far back
+    return truncated.substring(0, lastSpaceIndex) + '...';
+  }
+  
+  return truncated + '...';
+};
+
 const TableOfContents = ({ headings }: { headings: TocHeading[] }) => {
   if (headings.length === 0) return null;
   
@@ -49,7 +64,7 @@ const TableOfContents = ({ headings }: { headings: TocHeading[] }) => {
   };
   
   return (
-    <div className="bg-white rounded-lg border border-gray-100 p-4">
+    <div className="bg-white rounded-lg border border-gray-100 p-4 w-full">
       <div className="flex items-center gap-2 mb-2">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3 5H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -59,21 +74,25 @@ const TableOfContents = ({ headings }: { headings: TocHeading[] }) => {
         <h2 className="text-base font-semibold">Table of Contents</h2>
       </div>
       <ul className="space-y-1.5">
-        {headings.map((heading) => (
-          <li key={heading.id} className="text-sm">
-            <a 
-              href={`#${heading.id}`} 
-              className="flex items-center text-gray-700 hover:text-blue-600" 
-              style={{ paddingLeft: `${(heading.level - 2) * 1}rem` }}
-              onClick={(e) => handleClick(e, heading.id)}
-            >
-              <ChevronRight className="w-3 h-3 mr-1.5 flex-shrink-0 text-gray-400" />
-              <span className="truncate block overflow-hidden" title={heading.text}>
-                {heading.text}
-              </span>
-            </a>
-          </li>
-        ))}
+        {headings.map((heading) => {
+          const displayText = abbreviateHeadingText(heading.text);
+          
+          return (
+            <li key={heading.id} className="text-sm">
+              <a 
+                href={`#${heading.id}`} 
+                className="flex items-center text-gray-700 hover:text-blue-600" 
+                style={{ paddingLeft: `${(heading.level - 2) * 1}rem` }}
+                onClick={(e) => handleClick(e, heading.id)}
+              >
+                <ChevronRight className="w-3 h-3 mr-1.5 flex-shrink-0 text-gray-400" />
+                <span className="block overflow-hidden" title={heading.text}>
+                  {displayText}
+                </span>
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
