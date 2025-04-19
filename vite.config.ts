@@ -4,7 +4,9 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/',
+  // Set base to '/' for development and './' for production
+  // This helps with both local development and GitHub Pages deployment
+  base: mode === 'production' ? './' : '/',
   server: {
     host: "::",
     port: 8080,
