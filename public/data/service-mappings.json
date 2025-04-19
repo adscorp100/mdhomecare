@@ -1,28 +1,4 @@
 {
-  "sil-services-sydney": {
-    "baseSlug": "sil-services",
-    "defaultLocation": "sydney"
-  },
-  "support-workers-in-sydney": {
-    "baseSlug": "support-workers",
-    "defaultLocation": "sydney"
-  },
-  "disability-services-sydney": {
-    "baseSlug": "disability-services",
-    "defaultLocation": "sydney"
-  },
-  "disability-services-melbourne": {
-    "baseSlug": "disability-services",
-    "defaultLocation": "melbourne"
-  },
-  "aged-care-home-modifications-maintenance-sydney": {
-    "baseSlug": "aged-care-home-modifications-maintenance",
-    "defaultLocation": "sydney"
-  },
-  "sil-providers-melbourne": {
-    "baseSlug": "sil-services",
-    "defaultLocation": "melbourne"
-  },
   "domestic-assistance-gold-coast": {
     "baseSlug": "domestic-assistance",
     "defaultLocation": "gold-coast"

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useDocumentTitle from "@/hooks/useDocumentTitle";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
 
 // Define the Service interface
 interface Service {
@@ -19,13 +20,22 @@ interface SuburbInfo {
   region: string;
 }
 
+interface SuburbItem {
+  slug: string;
+  name: string;
+  state: string;
+  region: string;
+}
+
 const Services = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [suburbs, setSuburbs] = useState<Record<string, SuburbInfo>>({});
+  const [suburbsList, setSuburbsList] = useState<SuburbItem[]>([]);
   const [selectedSuburb, setSelectedSuburb] = useState<string>("all");
+  const [searchTerm, setSearchTerm] = useState<string>("");
   
   // Create a formatted suburb name for display
   const formattedSuburbName = selectedSuburb && selectedSuburb !== "all" 
@@ -80,6 +90,23 @@ const Services = () => {
       .then(response => response.json())
       .then((data: Record<string, SuburbInfo>) => {
         setSuburbs(data);
+        
+        // Create a flat list of suburbs with their details
+        const suburbItems: SuburbItem[] = Object.entries(data).map(([slug, info]) => {
+          const { state, region } = info;
+          
+          // Format the suburb name for display
+          const name = slug.split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+          
+          return { slug, name, state, region };
+        });
+        
+        // Sort alphabetically by name
+        suburbItems.sort((a, b) => a.name.localeCompare(b.name));
+        
+        setSuburbsList(suburbItems);
       })
       .catch(error => {
         console.error('Error loading suburbs:', error);
@@ -102,6 +129,16 @@ const Services = () => {
     }
     return `/services/${slug}`;
   };
+
+  // Filter suburbs based on search term
+  const filteredSuburbs = searchTerm 
+    ? suburbsList.filter(suburb => {
+        const searchLower = searchTerm.toLowerCase();
+        return suburb.name.toLowerCase().includes(searchLower) || 
+               suburb.state.toLowerCase().includes(searchLower) || 
+               suburb.region.toLowerCase().includes(searchLower);
+      })
+    : suburbsList;
 
   if (loading) {
     return (
@@ -141,19 +178,32 @@ const Services = () => {
             ))}
           </div>
           
-          {/* Suburb selector */}
+          {/* Suburb selector with search */}
           <div className="w-full md:w-64">
             <Select value={selectedSuburb} onValueChange={setSelectedSuburb}>
               <SelectTrigger>
                 <SelectValue placeholder="Select location" />
               </SelectTrigger>
               <SelectContent>
+                {/* Search input */}
+                <div className="p-2 sticky top-0 bg-white z-10 border-b">
+                  <Input
+                    placeholder="Search locations..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="h-8"
+                  />
+                </div>
+                
                 <SelectItem value="all">All locations</SelectItem>
-                {Object.entries(suburbs).map(([slug, info]) => (
-                  <SelectItem key={slug} value={slug}>
-                    {slug.split('-')
-                      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                      .join(' ')} ({info.region})
+                
+                {/* Flat list of suburbs */}
+                {filteredSuburbs.map(suburb => (
+                  <SelectItem 
+                    key={suburb.slug} 
+                    value={suburb.slug}
+                  >
+                    {suburb.name} ({suburb.state})
                   </SelectItem>
                 ))}
               </SelectContent>
