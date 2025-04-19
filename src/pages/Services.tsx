@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Layout from "@/components/Layout";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useDocumentTitle from "@/hooks/useDocumentTitle";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -28,6 +28,9 @@ interface SuburbItem {
 }
 
 const Services = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { categorySlug, suburbSlug } = useParams<{ categorySlug?: string; suburbSlug?: string }>();
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<string[]>([]);
@@ -36,6 +39,86 @@ const Services = () => {
   const [suburbsList, setSuburbsList] = useState<SuburbItem[]>([]);
   const [selectedSuburb, setSelectedSuburb] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState<string>("");
+  
+  // Parse URL path parameters for SEO-friendly filtering
+  useEffect(() => {
+    // Handle category from URL path
+    if (categorySlug) {
+      // Convert category slug back to proper category name (simple capitalization for demo)
+      const categoryName = categorySlug
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+      
+      // Check if categories loaded and match
+      if (categories.length > 0) {
+        const matchedCategory = categories.find(cat => 
+          cat.toLowerCase().replace(/\s+/g, '-') === categorySlug || 
+          cat === categoryName
+        );
+        
+        if (matchedCategory) {
+          setActiveCategory(matchedCategory);
+        } else {
+          // Store for checking after categories load
+          sessionStorage.setItem('pendingCategorySlug', categorySlug);
+        }
+      } else {
+        // Store for checking after categories load
+        sessionStorage.setItem('pendingCategorySlug', categorySlug);
+      }
+    }
+    
+    // Handle suburb from URL path
+    if (suburbSlug) {
+      setSelectedSuburb(suburbSlug);
+    }
+    
+    // Check URL query parameters for backward compatibility
+    const searchParams = new URLSearchParams(location.search);
+    const categoryParam = searchParams.get('category');
+    const suburbParam = searchParams.get('suburb');
+    
+    // If query params exist, convert to path-based URL and redirect
+    if (categoryParam || suburbParam) {
+      let newPath = '/services';
+      
+      if (categoryParam) {
+        const categorySlug = categoryParam.toLowerCase().replace(/\s+/g, '-');
+        newPath = `/services/category/${categorySlug}`;
+      }
+      
+      if (suburbParam) {
+        newPath = `/services/location/${suburbParam}`;
+      }
+      
+      // If both params exist, prioritize category for simplicity
+      navigate(newPath, { replace: true });
+    }
+  }, [categorySlug, suburbSlug, categories, location.search, navigate]);
+  
+  // Check for pending category slug after categories are loaded
+  useEffect(() => {
+    if (categories.length > 0) {
+      const pendingCategorySlug = sessionStorage.getItem('pendingCategorySlug');
+      if (pendingCategorySlug) {
+        const categoryName = pendingCategorySlug
+          .split('-')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
+          
+        const matchedCategory = categories.find(cat => 
+          cat.toLowerCase().replace(/\s+/g, '-') === pendingCategorySlug || 
+          cat === categoryName
+        );
+        
+        if (matchedCategory) {
+          setActiveCategory(matchedCategory);
+          sessionStorage.removeItem('pendingCategorySlug');
+        }
+      }
+    }
+  }, [categories]);
   
   // Create a formatted suburb name for display
   const formattedSuburbName = selectedSuburb && selectedSuburb !== "all" 
@@ -140,6 +223,29 @@ const Services = () => {
       })
     : suburbsList;
 
+  // Handle category selection with SEO-friendly URL
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    
+    if (category !== "All") {
+      const categorySlug = category.toLowerCase().replace(/\s+/g, '-');
+      navigate(`/services/category/${categorySlug}`, { replace: true });
+    } else {
+      navigate('/services', { replace: true });
+    }
+  };
+  
+  // Handle suburb selection with SEO-friendly URL
+  const handleSuburbChange = (suburb: string) => {
+    setSelectedSuburb(suburb);
+    
+    if (suburb !== "all") {
+      navigate(`/services/location/${suburb}`, { replace: true });
+    } else {
+      navigate('/services', { replace: true });
+    }
+  };
+
   if (loading) {
     return (
       <Layout>
@@ -166,7 +272,7 @@ const Services = () => {
             {categories.map(category => (
               <button
                 key={category}
-                onClick={() => setActiveCategory(category)}
+                onClick={() => handleCategoryChange(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium ${
                   activeCategory === category
                     ? 'bg-blue-600 text-white'
@@ -180,7 +286,7 @@ const Services = () => {
           
           {/* Suburb selector with search */}
           <div className="w-full md:w-64">
-            <Select value={selectedSuburb} onValueChange={setSelectedSuburb}>
+            <Select value={selectedSuburb} onValueChange={handleSuburbChange}>
               <SelectTrigger>
                 <SelectValue placeholder="Select location" />
               </SelectTrigger>

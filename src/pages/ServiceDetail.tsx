@@ -361,16 +361,25 @@ const ServiceDetail = () => {
           <header className="mb-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">{getPageTitle()}</h1>
             <div className="flex gap-4">
-              <span className="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">
+              <button 
+                onClick={() => {
+                  const categorySlug = localizedService.category.toLowerCase().replace(/\s+/g, '-');
+                  navigate(`/services/category/${categorySlug}`);
+                }}
+                className="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm cursor-pointer hover:bg-blue-200 transition-colors"
+              >
                 {localizedService.category}
-              </span>
-              {suburbInfo && (
-                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-sm flex items-center gap-1">
+              </button>
+              {suburbInfo && resolvedSlug.suburb && (
+                <button
+                  onClick={() => navigate(`/services/location/${resolvedSlug.suburb}`)}
+                  className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-sm flex items-center gap-1 cursor-pointer hover:bg-green-200 transition-colors"
+                >
                   <MapPin className="h-3 w-3" /> 
-                  {resolvedSlug.suburb?.split('-')
+                  {resolvedSlug.suburb.split('-')
                     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                     .join(' ')}, {suburbInfo.region}
-                </span>
+                </button>
               )}
             </div>
           </header>
