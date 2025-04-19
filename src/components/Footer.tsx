@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, MapPin } from "lucide-react";
+import { PHONE_NUMBER, PHONE_NUMBER_RAW, ADDRESS } from "@/constants/contactInfo";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -42,11 +43,11 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
                 <MapPin size={20} className="flex-shrink-0 text-[#0EA5E9]" />
-                <span className="text-gray-300">6/11 York St Sydney, Australia</span>
+                <span className="text-gray-300">{ADDRESS}</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={20} className="flex-shrink-0 text-[#0EA5E9]" />
-                <a href="tel:+61405429512" className="text-gray-300 hover:text-[#0EA5E9] transition-colors">+61 405 429 512</a>
+                <a href={`tel:${PHONE_NUMBER_RAW}`} className="text-gray-300 hover:text-[#0EA5E9] transition-colors">{PHONE_NUMBER}</a>
               </li>
             </ul>
           </div>
