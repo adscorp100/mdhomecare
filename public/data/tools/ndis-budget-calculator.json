@@ -1,0 +1,608 @@
+{
+  "title": "NDIS Budget Calculator | Understanding Your NDIS Funding",
+  "slug": "ndis-budget-calculator",
+  "description": "Calculate your NDIS plan budget with our free calculator. Understand how NDIS funding categories work, estimate support costs, and learn about reasonable and necessary criteria.",
+  "category": "disability-support",
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the 'Reasonable and Necessary' criteria for NDIS funding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Reasonable and Necessary (R&N) criteria are the key requirements all NDIS supports must meet. These include: the support must be related to your disability, assist with your goals, help with social/economic participation, represent value for money, be likely effective, consider informal supports, and be an appropriate NDIS support rather than something funded by other systems."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the main NDIS budget categories?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "NDIS plans typically have three main budget categories: Core Supports (for everyday activities), Capacity Building Supports (for development of skills and independence), and Capital Supports (for assistive technology and home modifications). Newer plans may also include a Recurring Supports category for regular payments."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How flexible is my NDIS budget?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Core Supports funding is generally flexible, allowing you to move funds between subcategories (Daily Activities, Consumables, Social Participation, Transport). Capacity Building funding must be used within each specified subcategory. Capital funding is the least flexible and tied to specific approved items or modifications."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What evidence do I need for my NDIS plan budget?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Strong evidence for NDIS funding typically includes reports from health professionals that detail your functional capacity, how your disability impacts daily life, specific support recommendations with frequency and duration, and a clear link between these supports and your goals. For assistive technology or home modifications, you may need assessment reports and quotes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How important are my goals in determining my NDIS budget?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your goals are fundamental to NDIS funding decisions. A support must help you pursue your plan goals to meet the Reasonable and Necessary criteria. Clear, specific goals help justify why particular supports are needed and the funding levels required to achieve those goals."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much funding does NDIS provide?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "NDIS funding amounts vary greatly depending on individual needs, goals, and circumstances. Funding is determined based on what is 'reasonable and necessary' to meet your disability-related needs, not a fixed amount. Your plan might include funding for daily support, therapies, equipment, home modifications, and other disability-related supports."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use an NDIS budget template?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, NDIS budget templates (including Excel spreadsheets) can help you track and manage your funding. While the NDIA provides a basic budget calculator, many participants create or use custom templates that better suit their specific plan management needs. Our budget calculator helps you understand how NDIS funding categories work and what supports you might be eligible for."
+        }
+      }
+    ]
+  },
+  "metaInfo": {
+    "keywords": [
+      "ndis budget calculator",
+      "ndis budget",
+      "ndis budget template",
+      "ndis budget template excel",
+      "ndis funding calculator",
+      "ndis calculator",
+      "budget ndis",
+      "ndis funding amounts",
+      "ndis price calculator",
+      "ndis core budget",
+      "ndis support budgets",
+      "ndis budgets",
+      "how much funding does ndis give",
+      "how much money does ndis give you",
+      "ndis spending",
+      "support calculator ndis",
+      "ndis self-management spreadsheet",
+      "ndis financial planner",
+      "ndis plan template",
+      "ndis goal setting template",
+      "ndis improved daily living examples",
+      "ndis planner",
+      "budget calculator",
+      "budget calculator australia",
+      "budgeting calculator",
+      "budget tools",
+      "budget planner calculator",
+      "budget template australia",
+      "online budget calculator",
+      "weekly budget calculator"
+    ]
+  },
+  "budgetExplorer": {
+    "introText": "This tool will help you understand how NDIS plan budgets are structured and what supports might be included based on your goals and needs. It is not an official NDIS calculator and does not determine exact funding amounts or guarantee what will be funded in your plan.",
+    "sections": [
+      {
+        "id": "goals",
+        "title": "Goals and Aspirations",
+        "description": "Your NDIS goals directly influence what supports are funded. Each support must help you pursue your plan goals to meet the Reasonable and Necessary criteria.",
+        "questions": [
+          {
+            "id": "goal-daily-living",
+            "text": "Do you have goals related to improving independence in daily living activities?",
+            "type": "checkbox",
+            "info": "This includes personal care, household tasks, meal preparation, or other day-to-day activities."
+          },
+          {
+            "id": "goal-community",
+            "text": "Do you have goals related to social or community participation?",
+            "type": "checkbox",
+            "info": "This includes joining community groups, recreational activities, or social events."
+          },
+          {
+            "id": "goal-employment",
+            "text": "Do you have goals related to finding or maintaining employment?",
+            "type": "checkbox",
+            "info": "This includes seeking work, work preparation, or supports to help you succeed in your current job."
+          },
+          {
+            "id": "goal-education",
+            "text": "Do you have goals related to education or training?",
+            "type": "checkbox",
+            "info": "This includes pursuing further education, learning new skills, or participating in training courses."
+          },
+          {
+            "id": "goal-health",
+            "text": "Do you have goals related to improving health and wellbeing?",
+            "type": "checkbox",
+            "info": "This includes managing the health impacts of your disability and improving overall wellbeing."
+          },
+          {
+            "id": "goal-housing",
+            "text": "Do you have goals related to where or how you live?",
+            "type": "checkbox",
+            "info": "This includes finding suitable accommodation or making your current home more accessible."
+          },
+          {
+            "id": "goal-relationships",
+            "text": "Do you have goals related to building or maintaining relationships?",
+            "type": "checkbox",
+            "info": "This includes improving communication skills, managing behavior, or developing social skills."
+          }
+        ]
+      },
+      {
+        "id": "core-supports",
+        "title": "Core Supports",
+        "description": "Core Supports help with everyday activities, current disability needs, and working toward your goals. This is generally the most flexible budget category.",
+        "subcategories": [
+          {
+            "id": "daily-activities",
+            "title": "Assistance with Daily Life",
+            "description": "Support with personal care, household tasks, and other daily activities.",
+            "supports": [
+              {
+                "id": "personal-care",
+                "title": "Personal Care Assistance",
+                "description": "Help with showering, dressing, toileting, eating, or other personal care needs.",
+                "eligibilityCriteria": "Must be required due to your disability impact and not be support typically provided by family members.",
+                "evidenceRequired": "Assessment report detailing personal care needs, required hours, and level of support.",
+                "relatedGoals": ["goal-daily-living"],
+                "budgetCategory": "Core - Daily Activities"
+              },
+              {
+                "id": "household-tasks",
+                "title": "Assistance with Household Tasks",
+                "description": "Help with cleaning, laundry, meal preparation, or other home maintenance tasks.",
+                "eligibilityCriteria": "Must be required due to your disability impact and beyond what would be expected for someone without a disability.",
+                "evidenceRequired": "Assessment detailing impact of disability on household management capabilities.",
+                "relatedGoals": ["goal-daily-living"],
+                "budgetCategory": "Core - Daily Activities"
+              },
+              {
+                "id": "supported-independent-living",
+                "title": "Supported Independent Living (SIL)",
+                "description": "Support for people who need help with daily tasks to live independently.",
+                "eligibilityCriteria": "Typically requires high support needs and formal assessment of SIL requirements.",
+                "evidenceRequired": "SIL assessment, occupational therapy reports, behavioral support plans if relevant.",
+                "relatedGoals": ["goal-daily-living", "goal-housing"],
+                "budgetCategory": "Core - Daily Activities"
+              }
+            ]
+          },
+          {
+            "id": "consumables",
+            "title": "Consumables",
+            "description": "Everyday items required due to your disability.",
+            "supports": [
+              {
+                "id": "continence-products",
+                "title": "Continence Products",
+                "description": "Items to manage continence needs.",
+                "eligibilityCriteria": "Must be required due to disability impact and not covered by health system.",
+                "evidenceRequired": "Continence assessment or healthcare professional report indicating need.",
+                "relatedGoals": ["goal-daily-living", "goal-health"],
+                "budgetCategory": "Core - Consumables"
+              },
+              {
+                "id": "low-cost-at",
+                "title": "Low-cost Assistive Technology",
+                "description": "Simple equipment to help with daily tasks (e.g., adapted cutlery, reaching aids).",
+                "eligibilityCriteria": "Must directly relate to disability needs and improve independence.",
+                "evidenceRequired": "Occupational therapy assessment recommending specific items.",
+                "relatedGoals": ["goal-daily-living"],
+                "budgetCategory": "Core - Consumables"
+              }
+            ]
+          },
+          {
+            "id": "social-participation",
+            "title": "Social & Community Participation",
+            "description": "Support to engage in social, recreational, or community activities.",
+            "supports": [
+              {
+                "id": "community-access",
+                "title": "Community Access Support",
+                "description": "Support worker to assist with participating in community activities.",
+                "eligibilityCriteria": "Must require support due to disability to access community activities.",
+                "evidenceRequired": "Report detailing barriers to participation and support needs.",
+                "relatedGoals": ["goal-community"],
+                "budgetCategory": "Core - Social & Community Participation"
+              },
+              {
+                "id": "group-activities",
+                "title": "Group Activities",
+                "description": "Participation in group recreational or social programs.",
+                "eligibilityCriteria": "Must align with goals for social participation and be disability-specific.",
+                "evidenceRequired": "Assessment of social participation goals and support needs.",
+                "relatedGoals": ["goal-community", "goal-relationships"],
+                "budgetCategory": "Core - Social & Community Participation"
+              }
+            ]
+          },
+          {
+            "id": "transport",
+            "title": "Transport",
+            "description": "Support to help with the additional costs of transportation due to disability.",
+            "supports": [
+              {
+                "id": "transport-allowance",
+                "title": "Transport Allowance",
+                "description": "Funding to help with transport costs to access community, work, or other activities.",
+                "eligibilityCriteria": "Must be unable to use public transport independently due to disability.",
+                "evidenceRequired": "Assessment of transport needs and barriers to public transport use.",
+                "relatedGoals": ["goal-community", "goal-employment", "goal-education"],
+                "budgetCategory": "Core - Transport"
+              },
+              {
+                "id": "transport-support",
+                "title": "Transport Support Worker",
+                "description": "Support worker to accompany you when using transport.",
+                "eligibilityCriteria": "Must require assistance due to disability impact to use transport.",
+                "evidenceRequired": "Assessment detailing why support is needed for transport.",
+                "relatedGoals": ["goal-community", "goal-employment", "goal-education"],
+                "budgetCategory": "Core - Transport"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "capacity-building",
+        "title": "Capacity Building Supports",
+        "description": "Capacity Building Supports help build your independence and skills. Each subcategory is tied to specific goals and funding cannot be moved between subcategories.",
+        "subcategories": [
+          {
+            "id": "support-coordination",
+            "title": "Support Coordination",
+            "description": "Assistance to understand and implement your NDIS plan.",
+            "supports": [
+              {
+                "id": "level-2-coordination",
+                "title": "Support Coordination (Level 2)",
+                "description": "Coordinator to help you understand your plan, connect with providers, and monitor implementation.",
+                "eligibilityCriteria": "Must have complexity in support needs requiring assistance to coordinate multiple services.",
+                "evidenceRequired": "Assessment of need for coordination, complexity of support needs.",
+                "relatedGoals": ["goal-daily-living"],
+                "budgetCategory": "Capacity Building - Support Coordination"
+              }
+            ]
+          },
+          {
+            "id": "improved-daily-living",
+            "title": "Improved Daily Living",
+            "description": "Therapies and training to increase skills for daily life.",
+            "supports": [
+              {
+                "id": "occupational-therapy",
+                "title": "Occupational Therapy",
+                "description": "Assessment and therapy to improve daily living skills and independence.",
+                "eligibilityCriteria": "Must require OT intervention due to disability impact on daily activities.",
+                "evidenceRequired": "Current OT assessment outlining goals, intervention plan, and expected outcomes.",
+                "relatedGoals": ["goal-daily-living", "goal-health"],
+                "budgetCategory": "Capacity Building - Improved Daily Living"
+              },
+              {
+                "id": "physiotherapy",
+                "title": "Physiotherapy",
+                "description": "Assessment and therapy to improve movement, strength, and physical function.",
+                "eligibilityCriteria": "Must require physiotherapy due to disability impact, not for general health.",
+                "evidenceRequired": "Physiotherapy assessment outlining disability-specific needs and treatment plan.",
+                "relatedGoals": ["goal-daily-living", "goal-health"],
+                "budgetCategory": "Capacity Building - Improved Daily Living"
+              },
+              {
+                "id": "speech-therapy",
+                "title": "Speech Therapy",
+                "description": "Assessment and therapy for communication skills and swallowing.",
+                "eligibilityCriteria": "Must have communication or swallowing difficulties related to disability.",
+                "evidenceRequired": "Speech pathology assessment detailing communication needs and intervention plan.",
+                "relatedGoals": ["goal-daily-living", "goal-relationships", "goal-community"],
+                "budgetCategory": "Capacity Building - Improved Daily Living"
+              }
+            ]
+          },
+          {
+            "id": "employment",
+            "title": "Finding & Keeping a Job",
+            "description": "Support related to employment goals.",
+            "supports": [
+              {
+                "id": "employment-assistance",
+                "title": "Employment Support",
+                "description": "Specialized assistance to find and maintain employment.",
+                "eligibilityCriteria": "Must have employment goals and require disability-specific support.",
+                "evidenceRequired": "Vocational assessment detailing employment goals and support needs.",
+                "relatedGoals": ["goal-employment"],
+                "budgetCategory": "Capacity Building - Employment"
+              },
+              {
+                "id": "sles",
+                "title": "School Leaver Employment Supports (SLES)",
+                "description": "Support for school leavers to develop employment skills.",
+                "eligibilityCriteria": "Must be a school leaver with disability requiring transition to work support.",
+                "evidenceRequired": "School reports, transition plans, and vocational assessments.",
+                "relatedGoals": ["goal-employment", "goal-education"],
+                "budgetCategory": "Capacity Building - Employment"
+              }
+            ]
+          },
+          {
+            "id": "improved-relationships",
+            "title": "Improved Relationships",
+            "description": "Support for behavior management and relationship skills.",
+            "supports": [
+              {
+                "id": "behavior-support",
+                "title": "Positive Behavior Support",
+                "description": "Assessment, plan development, and training to address challenging behaviors.",
+                "eligibilityCriteria": "Must have behaviors of concern related to disability that impact quality of life.",
+                "evidenceRequired": "Behavior assessment, incident reports, and impact statement.",
+                "relatedGoals": ["goal-relationships", "goal-community"],
+                "budgetCategory": "Capacity Building - Improved Relationships"
+              }
+            ]
+          },
+          {
+            "id": "improved-health",
+            "title": "Improved Health & Wellbeing",
+            "description": "Support to manage the health impacts of your disability.",
+            "supports": [
+              {
+                "id": "dietetics",
+                "title": "Dietitian Services",
+                "description": "Nutritional advice related to disability needs.",
+                "eligibilityCriteria": "Must have dietary needs related to disability, not general nutrition advice.",
+                "evidenceRequired": "Medical referral detailing disability-related nutritional needs.",
+                "relatedGoals": ["goal-health"],
+                "budgetCategory": "Capacity Building - Improved Health & Wellbeing"
+              },
+              {
+                "id": "exercise-physiology",
+                "title": "Exercise Physiology",
+                "description": "Tailored exercise programs to address disability-related health needs.",
+                "eligibilityCriteria": "Must require specialized exercise intervention due to disability impact.",
+                "evidenceRequired": "Assessment detailing disability-specific exercise needs and benefits.",
+                "relatedGoals": ["goal-health"],
+                "budgetCategory": "Capacity Building - Improved Health & Wellbeing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "capital-supports",
+        "title": "Capital Supports",
+        "description": "Capital Supports fund higher-cost, one-off purchases like assistive technology and home modifications. This funding is the least flexible and tied to specific approved items.",
+        "subcategories": [
+          {
+            "id": "assistive-technology",
+            "title": "Assistive Technology",
+            "description": "Equipment to help with daily living, communication, mobility, or other needs.",
+            "supports": [
+              {
+                "id": "mobility-equipment",
+                "title": "Mobility Equipment",
+                "description": "Wheelchairs, walkers, or other mobility aids.",
+                "eligibilityCriteria": "Must be required due to disability impact on mobility, not covered by health system.",
+                "evidenceRequired": "Detailed AT assessment from qualified therapist, quotes, and trial reports if applicable.",
+                "relatedGoals": ["goal-daily-living", "goal-community"],
+                "budgetCategory": "Capital - Assistive Technology"
+              },
+              {
+                "id": "communication-devices",
+                "title": "Communication Devices",
+                "description": "Speech generating devices, communication software, or other communication aids.",
+                "eligibilityCriteria": "Must have communication difficulties related to disability requiring AT solution.",
+                "evidenceRequired": "Speech pathology assessment, AT trials, and recommendations.",
+                "relatedGoals": ["goal-daily-living", "goal-relationships", "goal-community"],
+                "budgetCategory": "Capital - Assistive Technology"
+              },
+              {
+                "id": "vehicle-modifications",
+                "title": "Vehicle Modifications",
+                "description": "Modifications to vehicles to accommodate disability needs.",
+                "eligibilityCriteria": "Must require vehicle modifications due to disability and be most appropriate solution.",
+                "evidenceRequired": "Detailed assessment, multiple quotes, and evidence of other transport options considered.",
+                "relatedGoals": ["goal-community", "goal-employment"],
+                "budgetCategory": "Capital - Assistive Technology"
+              }
+            ]
+          },
+          {
+            "id": "home-modifications",
+            "title": "Home Modifications",
+            "description": "Changes to your home to improve accessibility and safety.",
+            "supports": [
+              {
+                "id": "minor-mods",
+                "title": "Minor Home Modifications",
+                "description": "Grab rails, ramps, bathroom modifications, or other smaller changes.",
+                "eligibilityCriteria": "Must be necessary due to disability impact and be most appropriate solution.",
+                "evidenceRequired": "Occupational therapy home assessment, quotes, and evidence modifications are disability-related.",
+                "relatedGoals": ["goal-daily-living", "goal-housing"],
+                "budgetCategory": "Capital - Home Modifications"
+              },
+              {
+                "id": "major-mods",
+                "title": "Major Home Modifications",
+                "description": "Significant structural changes to improve accessibility.",
+                "eligibilityCriteria": "Must be necessary due to disability, most appropriate solution, and consider alternatives.",
+                "evidenceRequired": "Comprehensive OT assessment, detailed drawings, multiple quotes, and evidence all options explored.",
+                "relatedGoals": ["goal-daily-living", "goal-housing"],
+                "budgetCategory": "Capital - Home Modifications"
+              }
+            ]
+          },
+          {
+            "id": "sda",
+            "title": "Specialist Disability Accommodation",
+            "description": "Housing designed for people with extreme functional impairment or very high support needs.",
+            "supports": [
+              {
+                "id": "sda-funding",
+                "title": "SDA Funding",
+                "description": "Funding for accommodation with specialized design features for people with high support needs.",
+                "eligibilityCriteria": "Must have extreme functional impairment requiring specialized housing features.",
+                "evidenceRequired": "Extensive housing assessment, evidence of high support needs, and exploration of alternatives.",
+                "relatedGoals": ["goal-housing"],
+                "budgetCategory": "Capital - SDA"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "seoContent": {
+    "introduction": "Understanding how NDIS budgets are calculated is crucial for accessing the right supports. The National Disability Insurance Agency (NDIA) follows specific criteria and processes to determine funding for participants' plans.",
+    "tableOfContents": [
+      { "id": "reasonable-necessary", "text": "Reasonable and Necessary Criteria" },
+      { "id": "budget-categories", "text": "NDIS Budget Categories and Flexibility" },
+      { "id": "evidence-requirements", "text": "Evidence Requirements for Funding" },
+      { "id": "planning-process", "text": "The NDIS Planning Process" }
+    ],
+    "keyFacts": [
+      "NDIS funding is based on 'Reasonable and Necessary' criteria defined in the NDIS Act",
+      "Plan budgets are divided into Core, Capacity Building, and Capital support categories",
+      "Core Supports are generally flexible, while Capacity Building and Capital Supports have specific rules",
+      "Your individual goals directly influence what supports are funded in your plan",
+      "Strong evidence from health professionals is crucial for justifying support needs"
+    ],
+    "budgetCategories": [
+      {
+        "title": "Core Supports",
+        "description": "Funding for everyday activities and current needs, typically the most flexible budget category.",
+        "subcategories": "Daily Activities, Consumables, Social & Community Participation, Transport",
+        "flexibility": "Generally flexible between subcategories, except for stated supports."
+      },
+      {
+        "title": "Capacity Building Supports",
+        "description": "Funding to build independence and skills aligned with your goals.",
+        "subcategories": "Support Coordination, Improved Daily Living, Finding & Keeping a Job, Improved Relationships, and others",
+        "flexibility": "Not flexible between subcategories - funds must be used within the allocated subcategory."
+      },
+      {
+        "title": "Capital Supports",
+        "description": "Funding for higher-cost items like assistive technology and home modifications.",
+        "subcategories": "Assistive Technology, Home Modifications, Specialist Disability Accommodation",
+        "flexibility": "Not flexible - funds are tied to specific approved items or modifications."
+      }
+    ],
+    "reasonableNecessary": {
+      "description": "For a support to be funded in your NDIS plan, it must meet all of the following 'Reasonable and Necessary' criteria:",
+      "criteria": [
+        {
+          "title": "Related to Disability",
+          "description": "The support must be required due to the functional impact of your disability."
+        },
+        {
+          "title": "Assists Goal Pursuit",
+          "description": "The support must help you pursue the goals in your NDIS plan."
+        },
+        {
+          "title": "Facilitates Participation",
+          "description": "The support must help you participate socially or economically in the community."
+        },
+        {
+          "title": "Value for Money",
+          "description": "The support must represent value for money compared to benefits and alternatives."
+        },
+        {
+          "title": "Effective and Beneficial",
+          "description": "The support must be likely to be effective and beneficial based on evidence and good practice."
+        },
+        {
+          "title": "Considers Informal Supports",
+          "description": "The support takes into account what would reasonably be provided by family, carers, and community."
+        },
+        {
+          "title": "Is an NDIS Support",
+          "description": "The support must be something the NDIS is responsible for, not other systems like health or education."
+        }
+      ]
+    },
+    "evidenceSection": {
+      "description": "The NDIA requires evidence to support funding requests. Strong evidence is key to demonstrating your needs meet the 'Reasonable and Necessary' criteria.",
+      "examples": [
+        {
+          "type": "Functional Assessments",
+          "description": "Reports from allied health professionals that evaluate how your disability affects daily activities and what supports would help."
+        },
+        {
+          "type": "Support Recommendations",
+          "description": "Specific recommendations from professionals about the type, frequency, and duration of supports needed."
+        },
+        {
+          "type": "Progress Reports",
+          "description": "For plan reviews, reports on outcomes achieved, ongoing needs, and justification for continued support."
+        },
+        {
+          "type": "Quotes and Trials",
+          "description": "For assistive technology or modifications, evidence of trials, assessments, and quotes from suppliers."
+        }
+      ]
+    },
+    "planningProcess": {
+      "description": "The NDIS planning process involves several steps that ultimately determine your budget:",
+      "steps": [
+        {
+          "title": "Goal Setting",
+          "description": "Working with your planner to identify and document your goals and aspirations."
+        },
+        {
+          "title": "Needs Assessment",
+          "description": "Discussing your disability-related needs, current supports, and barriers."
+        },
+        {
+          "title": "Evidence Review",
+          "description": "The planner reviews all submitted reports and assessments."
+        },
+        {
+          "title": "Support Identification",
+          "description": "Determining what supports would be reasonable and necessary to achieve your goals."
+        },
+        {
+          "title": "Budget Calculation",
+          "description": "Calculating funding amounts based on identified reasonable and necessary supports."
+        },
+        {
+          "title": "Plan Approval",
+          "description": "The completed plan and budget are submitted for approval by an NDIA delegate."
+        }
+      ]
+    },
+    "nextSteps": [
+      {
+        "title": "Preparing for Your Planning Meeting",
+        "description": "Gather evidence from health professionals, clearly define your goals, and identify your support needs before your NDIS planning meeting."
+      },
+      {
+        "title": "Understanding Your Plan",
+        "description": "Once you receive your plan, understand how your funding is allocated across budget categories and what flexibility you have to use your funds."
+      }
+    ],
+    "ctaTitle": "Need Help with NDIS Planning?",
+    "ctaDescription": "Our team can help you prepare for NDIS planning meetings, understand funding categories, and maximize your plan outcomes. Contact us for personalized support."
+  }
+} 

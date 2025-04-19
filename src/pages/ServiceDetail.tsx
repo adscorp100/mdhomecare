@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, MapPin, ChevronRight, Globe, Navigation, Map, Phone, Calendar, MessageSquare, CheckCircle } from "lucide-react";
+import { ArrowLeft, MapPin, ChevronRight, Globe, Navigation, Map, Phone, Calendar, MessageSquare, CheckCircle, ChevronDown } from "lucide-react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import "./BlogPost.css"; // Reuse the same CSS for content formatting
@@ -73,6 +73,7 @@ const ServiceDetail = () => {
   const [relatedSuburbs, setRelatedSuburbs] = useState<RelatedSuburb[]>([]);
   const [allSuburbs, setAllSuburbs] = useState<Record<string, SuburbInfo>>({});
   const [stateSuburbs, setStateSuburbs] = useState<Record<string, RelatedSuburb[]>>({});
+  const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({});
 
   // Effect to scroll to top when slug changes
   useEffect(() => {
@@ -278,18 +279,27 @@ const ServiceDetail = () => {
       }));
   }, [allSuburbs]);
 
+  // Toggle dropdown state for a specific state
+  const toggleDropdown = (state: string) => {
+    setOpenDropdowns(prev => ({
+      ...prev,
+      [state]: !prev[state]
+    }));
+  };
+
   // Get a selection of suburbs from each state for SEO interlinking
   const getInterlinkingSuburbs = useMemo(() => {
-    const result: Record<string, RelatedSuburb[]> = {};
+    const result: Record<string, { visible: RelatedSuburb[], remaining: RelatedSuburb[] }> = {};
     const stateOrder = ['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'NT', 'ACT'];
     
-    // Take up to 8 suburbs from each state, prioritizing major areas
+    // For each state, divide suburbs into visible and remaining (for dropdown)
     stateOrder.forEach(state => {
       if (stateSuburbs[state] && stateSuburbs[state].length > 0) {
-        // Take a sampling of suburbs - for SEO we want a mix of large and smaller areas
-        // For better visual display, take 8 suburbs per state
-        const stateSample = stateSuburbs[state].slice(0, 12);
-        result[state] = stateSample;
+        // Show first 8 suburbs by default, remaining in dropdown if more than 8
+        const visible = stateSuburbs[state].slice(0, 8);
+        const remaining = stateSuburbs[state].length > 8 ? stateSuburbs[state].slice(8) : [];
+        
+        result[state] = { visible, remaining };
       }
     });
     
@@ -492,9 +502,11 @@ const ServiceDetail = () => {
             {Object.keys(getInterlinkingSuburbs).length > 0 ? (
               <div className="grid gap-8">
                 {Object.entries(getInterlinkingSuburbs)
-                  .map(([state, suburbs]) => {
+                  .map(([state, { visible, remaining }]) => {
                     const stateStyles = STATE_COLORS[state] || { bg: 'bg-gray-50', text: 'text-gray-700', hover: 'hover:bg-gray-100', icon: 'text-gray-500' };
                     const fullStateName = getFullStateName(state);
+                    const hasDropdown = remaining.length > 0;
+                    const isOpen = openDropdowns[state] || false;
                     
                     return (
                       <div key={state} className={`p-4 rounded-xl ${stateStyles.bg} border shadow-sm`}>
@@ -504,7 +516,8 @@ const ServiceDetail = () => {
                         </h3>
                         
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-2 gap-y-3">
-                          {suburbs.map(suburb => (
+                          {/* Visible suburbs */}
+                          {visible.map(suburb => (
                             <a
                               key={suburb.slug}
                               href={getSuburbUrl(suburb.slug)}
@@ -517,20 +530,35 @@ const ServiceDetail = () => {
                             </a>
                           ))}
                           
-                          {state === "NSW" && (
-                            <a 
-                              href={`/services/${resolvedSlug.baseSlug}-locations-${state.toLowerCase()}`}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                navigate(`/services/${resolvedSlug.baseSlug}-locations-${state.toLowerCase()}`);
-                                window.scrollTo(0, 0);
-                              }}
-                              className={`${stateStyles.text} font-medium text-sm flex items-center gap-1 ml-1`}
+                          {/* "See more" dropdown button if there are remaining suburbs */}
+                          {hasDropdown && (
+                            <button
+                              onClick={() => toggleDropdown(state)}
+                              className={`${stateStyles.text} ${stateStyles.hover} text-sm py-1 px-2 rounded-md font-medium flex items-center gap-1`}
                             >
-                              See all in {fullStateName} <ChevronRight className="h-3 w-3" />
-                            </a>
+                              {isOpen ? 'See fewer' : `See all (${remaining.length + visible.length})`}
+                              <ChevronDown className={`h-3 w-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                            </button>
                           )}
                         </div>
+                        
+                        {/* Dropdown with remaining suburbs */}
+                        {hasDropdown && isOpen && (
+                          <div className="mt-3 pt-3 border-t border-opacity-20 border-gray-500 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-2 gap-y-3">
+                            {remaining.map(suburb => (
+                              <a
+                                key={suburb.slug}
+                                href={getSuburbUrl(suburb.slug)}
+                                onClick={(e) => handleSuburbClick(suburb.slug, e)}
+                                className={`${stateStyles.text} ${stateStyles.hover} text-sm py-1 px-2 rounded-md truncate hover:shadow-sm transition-all flex items-center gap-1`}
+                                title={`${baseServiceTitle} in ${suburb.name}`}
+                              >
+                                <MapPin className={`h-3 w-3 ${stateStyles.icon}`} />
+                                {suburb.name}
+                              </a>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     );
                   })}
