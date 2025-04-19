@@ -10,6 +10,8 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import Tools from "./pages/Tools";
+import ToolDetail from "./pages/ToolDetail";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +27,9 @@ const App = () => (
           <Route path="/services/category/:categorySlug" element={<Services />} />
           <Route path="/services/location/:suburbSlug" element={<Services />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/tools" element={<Tools />} />
+          <Route path="/tools/category/:categorySlug" element={<Tools />} />
+          <Route path="/tools/:slug" element={<ToolDetail />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />

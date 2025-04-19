@@ -1,4 +1,4 @@
-import { Home, FileText, ListCheck, Mail, Menu } from "lucide-react";
+import { Home, FileText, ListCheck, Mail, Menu, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -19,6 +19,12 @@ const Navigation = () => {
         <Link to="/services" className="flex items-center gap-2">
           <ListCheck className="h-4 w-4" />
           Services
+        </Link>
+      </Button>
+      <Button variant="ghost" asChild>
+        <Link to="/tools" className="flex items-center gap-2">
+          <Wrench className="h-4 w-4" />
+          Tools
         </Link>
       </Button>
       <Button variant="ghost" asChild>

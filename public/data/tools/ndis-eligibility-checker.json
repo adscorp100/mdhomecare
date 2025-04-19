@@ -1,0 +1,308 @@
+{
+  "title": "NDIS Eligibility Checker | Am I Eligible for NDIS?",
+  "slug": "ndis-eligibility-checker",
+  "description": "Find out if you might be eligible for the NDIS with our simple eligibility checker. Answer a few questions to determine if you meet the basic requirements for the National Disability Insurance Scheme.",
+  "category": "disability-support",
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the age requirements for NDIS eligibility?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To be eligible for the NDIS, you must be under 65 years of age when you first apply. There is no minimum age requirement."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Am I eligible for NDIS if I have ADHD?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ADHD may qualify for NDIS funding, but eligibility depends on the severity and functional impact of your condition. The NDIS focuses on how your ADHD affects your daily functioning rather than the diagnosis alone. You will need to provide substantial documentation showing the functional impact of your ADHD."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the NDIS means tested?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, the NDIS is not means tested. Your income, assets, or savings do not affect your eligibility for the NDIS."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the residency requirements for NDIS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To be eligible for the NDIS, you must live in Australia and be an Australian citizen, permanent resident, or hold a Protected Special Category Visa."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does permanent disability mean for NDIS eligibility?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For NDIS eligibility, a permanent disability means your condition is likely to be lifelong and impacts your ability to take part in everyday activities. The focus is on functional impact rather than just having a diagnosis."
+        }
+      }
+    ]
+  },
+  "metaInfo": {
+    "keywords": [
+      "ndis eligibility",
+      "ndis eligibility checklist",
+      "ndis eligibility criteria",
+      "who is eligible for ndis",
+      "ndis age limit",
+      "ndis means tested",
+      "ndis for adhd",
+      "ndis autism eligibility",
+      "ndis early intervention eligibility",
+      "ndis application",
+      "am I eligible for ndis",
+      "check ndis eligibility",
+      "ndis checker"
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Are you under 65 years of age?",
+      "type": "radio",
+      "options": [
+        {
+          "value": "yes",
+          "label": "Yes",
+          "nextQuestion": "q2"
+        },
+        {
+          "value": "no",
+          "label": "No",
+          "result": {
+            "eligible": "no",
+            "title": "Unfortunately, you may not be eligible for the NDIS",
+            "message": "The NDIS is designed for people who acquire their disability before the age of 65. If you are 65 or older when applying for the first time, you may need to seek support through the aged care system instead.",
+            "nextSteps": "You may be eligible for support through My Aged Care. Visit <a href='https://www.myagedcare.gov.au/' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:underline'>My Aged Care</a> or call 1800 200 422 to discuss your options."
+          }
+        }
+      ]
+    },
+    {
+      "id": "residence",
+      "text": "Are you an Australian citizen, permanent resident, or Protected Special Category Visa holder?",
+      "type": "radio",
+      "options": [
+        {
+          "value": "yes",
+          "label": "Yes",
+          "nextQuestion": "location"
+        },
+        {
+          "value": "no",
+          "label": "No",
+          "result": {
+            "eligible": "no",
+            "title": "Residence Requirement Not Met",
+            "message": "The NDIS is only available to Australian citizens, Permanent Visa holders, and Protected Special Category Visa holders.",
+            "nextSteps": "You may be able to access other supports through state/territory disability services."
+          }
+        }
+      ]
+    },
+    {
+      "id": "location",
+      "text": "Do you live in Australia?",
+      "type": "radio",
+      "options": [
+        {
+          "value": "yes",
+          "label": "Yes",
+          "nextQuestion": "disability"
+        },
+        {
+          "value": "no",
+          "label": "No",
+          "result": {
+            "eligible": "no",
+            "title": "Location Requirement Not Met",
+            "message": "The NDIS is only available to people who live in Australia.",
+            "nextSteps": "You may be able to access other supports in your country of residence."
+          }
+        }
+      ]
+    },
+    {
+      "id": "disability",
+      "text": "Do you have a disability caused by a permanent impairment?",
+      "type": "radio",
+      "options": [
+        {
+          "value": "yes",
+          "label": "Yes",
+          "nextQuestion": "daily_activities"
+        },
+        {
+          "value": "no",
+          "label": "No",
+          "result": {
+            "eligible": "no",
+            "title": "Disability Requirement Not Met",
+            "message": "The NDIS is only available to people who have a disability caused by a permanent impairment. The impairment may be intellectual, cognitive, neurological, sensory, physical, or psychosocial.",
+            "nextSteps": "If you have a temporary condition, you may be eligible for other support services."
+          }
+        }
+      ]
+    },
+    {
+      "id": "daily_activities",
+      "text": "Do you usually need disability-specific supports to complete daily life activities?",
+      "type": "radio",
+      "options": [
+        {
+          "value": "yes",
+          "label": "Yes",
+          "result": {
+            "eligible": "likely",
+            "title": "You May Be Eligible for the NDIS",
+            "message": "Based on your responses, you may be eligible for the NDIS as you usually need disability-specific supports to complete daily life activities.",
+            "nextSteps": "Find out how to <a href='https://www.ndis.gov.au/applying-access-ndis/how-apply' target='_blank' rel='noopener noreferrer'>apply for the NDIS</a>."
+          }
+        },
+        {
+          "value": "no",
+          "label": "No",
+          "nextQuestion": "future_needs"
+        }
+      ]
+    },
+    {
+      "id": "future_needs",
+      "text": "Do you need some supports now to reduce your future need for support?",
+      "type": "radio",
+      "options": [
+        {
+          "value": "yes",
+          "label": "Yes",
+          "result": {
+            "eligible": "likely",
+            "title": "You May Be Eligible for the NDIS",
+            "message": "Based on your responses, you may be eligible for the NDIS as you need some supports now to reduce your future need for support.",
+            "nextSteps": "Find out how to <a href='https://www.ndis.gov.au/applying-access-ndis/how-apply' target='_blank' rel='noopener noreferrer'>apply for the NDIS</a>."
+          }
+        },
+        {
+          "value": "no",
+          "label": "No",
+          "nextQuestion": "family_skills"
+        }
+      ]
+    },
+    {
+      "id": "family_skills",
+      "text": "Do you need some supports now for your family to build their skills to help you?",
+      "type": "radio",
+      "options": [
+        {
+          "value": "yes",
+          "label": "Yes",
+          "result": {
+            "eligible": "likely",
+            "title": "You May Be Eligible for the NDIS",
+            "message": "Based on your responses, you may be eligible for the NDIS as you need some supports now for your family to build their skills to help you.",
+            "nextSteps": "Find out how to <a href='https://www.ndis.gov.au/applying-access-ndis/how-apply' target='_blank' rel='noopener noreferrer'>apply for the NDIS</a>."
+          }
+        },
+        {
+          "value": "no",
+          "label": "No",
+          "result": {
+            "eligible": "unlikely",
+            "title": "The NDIS May Not Be the Best Option",
+            "message": "Based on your responses, the NDIS may not be the best way to support you.",
+            "nextSteps": "A local area coordinator can help you connect with other government and community supports. Contact your local <a href='https://www.ndis.gov.au/contact/locations' target='_blank' rel='noopener noreferrer'>NDIS office</a> for more information."
+          }
+        }
+      ]
+    }
+  ],
+  "seoContent": {
+    "introduction": "The National Disability Insurance Scheme (NDIS) provides support to Australians with disability, their families and carers. Understanding if you're eligible for NDIS is an important first step in accessing these supports.",
+    "tableOfContents": [
+      { "id": "ndis-eligibility-requirements", "text": "NDIS Eligibility Requirements" },
+      { "id": "ndis-and-conditions", "text": "NDIS and Different Conditions" },
+      { "id": "early-intervention", "text": "Early Intervention Requirements" },
+      { "id": "next-steps", "text": "Next Steps After Checking Eligibility" }
+    ],
+    "keyFacts": [
+      "You must be under 65 years of age when you first apply",
+      "You need to be an Australian citizen, permanent resident, or hold a Protected Special Category Visa",
+      "Your disability must be permanent and significantly impact your daily life",
+      "The NDIS is not means tested - your income and assets don't affect eligibility"
+    ],
+    "requirements": [
+      {
+        "title": "Age Requirements",
+        "description": "You must be under 65 years of age when you apply for the NDIS. There is no minimum age limit, though children under 9 may be supported through the NDIS Early Childhood approach."
+      },
+      {
+        "title": "Residence Requirements",
+        "description": "You must live in Australia and be an Australian citizen, permanent resident, or hold a Protected Special Category Visa to access NDIS supports."
+      },
+      {
+        "title": "Disability Requirements",
+        "description": "You must have a permanent disability that significantly affects your ability to participate in everyday activities and will likely require support throughout your lifetime."
+      },
+      {
+        "title": "Early Intervention Requirements",
+        "description": "You may qualify for early intervention if getting support now will help reduce your future needs or if you're a child with developmental delay."
+      }
+    ],
+    "disabilityTypes": [
+      {
+        "type": "Physical",
+        "examples": "Mobility limitations, spinal cord injury, multiple sclerosis",
+        "considerations": "Impact on mobility and daily activities"
+      },
+      {
+        "type": "Intellectual",
+        "examples": "Down syndrome, intellectual disability",
+        "considerations": "Cognitive functioning and adaptive behavior"
+      },
+      {
+        "type": "Sensory",
+        "examples": "Vision or hearing impairments",
+        "considerations": "Effect on communication and environmental awareness"
+      },
+      {
+        "type": "Psychosocial",
+        "examples": "Severe and persistent mental health conditions",
+        "considerations": "Impact on social and economic participation"
+      },
+      {
+        "type": "Neurological",
+        "examples": "Autism, ADHD (with significant impact)",
+        "considerations": "Functional impact on daily living"
+      }
+    ],
+    "adhdNote": "ADHD may qualify for NDIS funding, but eligibility depends on severity and functional impact. The NDIS considers how your condition affects your daily functioning rather than the diagnosis alone. Substantial documentation of functional impairment is typically required.",
+    "earlyInterventionPoints": [
+      "You have a permanent disability and getting support now will help reduce your future needs",
+      "You're a child under 7 with developmental delay",
+      "Getting support now will help build your capacity or prevent deterioration of your functional capacity"
+    ],
+    "nextSteps": [
+      {
+        "title": "If You Think You're Eligible",
+        "description": "Contact your nearest NDIS office or Local Area Coordinator to discuss starting your application. You'll need to gather supporting documentation from health professionals."
+      },
+      {
+        "title": "If You Need Help Applying",
+        "description": "Our team can provide guidance throughout the NDIS application process, from understanding eligibility to helping with paperwork and assessments."
+      }
+    ],
+    "ctaTitle": "Need Professional Guidance?",
+    "ctaDescription": "Our specialists can help you navigate the NDIS application process, from determining eligibility to submitting your application with the right supporting evidence."
+  }
+} 
