@@ -17,6 +17,16 @@ interface BlogPost {
   readTime: string;
 }
 
+// Define Service interface
+interface Service {
+  title: string;
+  slug: string;
+  description: string;
+  image: string;
+  category: string;
+  keywords: string[];
+}
+
 // Define heading structure for TOC
 interface TocHeading {
   id: string;
@@ -72,12 +82,145 @@ const TableOfContents = ({ headings }: { headings: TocHeading[] }) => {
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPost | null>(null);
+  const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [headings, setHeadings] = useState<TocHeading[]>([]);
   
   // Set the document title with a placeholder while loading
   useDocumentTitle(post ? post.title : 'Blog Post');
+
+  // Fetch all services
+  useEffect(() => {
+    fetch('/data/services/services.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to load services');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setServices(data);
+      })
+      .catch(error => {
+        console.error('Error loading services:', error);
+      });
+  }, []);
+
+  // Process content to add service links
+  const processContentWithServiceLinks = useCallback((content: string, services: Service[]) => {
+    if (!services.length) return content;
+    
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(content, 'text/html');
+    
+    // Get all text nodes in the document
+    const textWalker = document.createTreeWalker(
+      doc.body,
+      NodeFilter.SHOW_TEXT,
+      null
+    );
+    
+    // Track which keywords have been linked to avoid duplicate links in proximity
+    const linkedKeywords = new Set<string>();
+    const paragraphsWithLinks = new Set<Node>();
+    
+    // Store nodes to be processed after walking to avoid modifying during traversal
+    const nodesToProcess: Array<{
+      node: Text,
+      keyword: string,
+      service: Service,
+      matchIndex: number
+    }> = [];
+    
+    // Check text nodes for keyword matches
+    let currentNode: Text | null;
+    while ((currentNode = textWalker.nextNode() as Text)) {
+      // Skip already processed nodes or nodes in elements we want to exclude (like anchors)
+      if (
+        currentNode.parentElement?.tagName === 'A' ||
+        currentNode.parentElement?.closest('a') ||
+        currentNode.parentElement?.classList.contains('no-links')
+      ) {
+        continue;
+      }
+      
+      const text = currentNode.textContent || '';
+      const parentParagraph = currentNode.parentElement?.closest('p, li, td');
+      
+      // Limit links per paragraph
+      if (parentParagraph && paragraphsWithLinks.has(parentParagraph) && 
+          parentParagraph.querySelectorAll('a').length >= 2) {
+        continue;
+      }
+      
+      // Check each service for matches in this text node
+      for (const service of services) {
+        // Skip services without keywords
+        if (!service.keywords || service.keywords.length === 0) continue;
+        
+        for (const keyword of service.keywords) {
+          // Skip short keywords to avoid too many links
+          if (keyword.length < 5) continue;
+          
+          // Skip already linked keywords
+          if (linkedKeywords.has(keyword.toLowerCase())) continue;
+          
+          // Case insensitive search
+          const regex = new RegExp(`\\b${keyword}\\b`, 'i');
+          const match = text.match(regex);
+          
+          if (match && match.index !== undefined) {
+            nodesToProcess.push({
+              node: currentNode,
+              keyword: match[0], // Use matched text to preserve casing
+              service,
+              matchIndex: match.index
+            });
+            
+            // Add to linked keywords to avoid duplication
+            linkedKeywords.add(keyword.toLowerCase());
+            
+            // Mark paragraph as having links
+            if (parentParagraph) {
+              paragraphsWithLinks.add(parentParagraph);
+            }
+            
+            // Only use one keyword per service per document to avoid over-linking
+            break;
+          }
+        }
+      }
+    }
+    
+    // Process the nodes (in reverse to maintain indices)
+    for (let i = nodesToProcess.length - 1; i >= 0; i--) {
+      const { node, keyword, service, matchIndex } = nodesToProcess[i];
+      
+      // Split text node into parts
+      const beforeText = node.textContent?.substring(0, matchIndex) || '';
+      const matchedText = node.textContent?.substring(matchIndex, matchIndex + keyword.length) || '';
+      const afterText = node.textContent?.substring(matchIndex + keyword.length) || '';
+      
+      // Create new nodes
+      const afterNode = document.createTextNode(afterText);
+      const linkNode = document.createElement('a');
+      linkNode.href = `/services/${service.slug}`;
+      linkNode.textContent = matchedText;
+      linkNode.className = 'text-blue-600 hover:underline font-medium';
+      linkNode.title = service.title.replace('{suburb}', '');
+      
+      // Replace the original text node with the new nodes
+      const parentNode = node.parentNode;
+      if (parentNode) {
+        node.textContent = beforeText;
+        parentNode.insertBefore(afterNode, node.nextSibling);
+        parentNode.insertBefore(linkNode, afterNode);
+      }
+    }
+    
+    return doc.body.innerHTML;
+  }, []);
 
   // Extract headings from HTML content
   const parseHeadings = useCallback((htmlContent: string) => {
@@ -103,11 +246,6 @@ const BlogPost = () => {
       });
     });
     
-    // Update the content with added IDs
-    setPost(prev => 
-      prev ? { ...prev, content: doc.body.innerHTML } : null
-    );
-    
     return tocHeadings;
   }, []);
 
@@ -122,6 +260,12 @@ const BlogPost = () => {
           return response.json();
         })
         .then(data => {
+          // Process content with service links if services are loaded
+          if (services.length > 0 && data.content) {
+            const processedContent = processContentWithServiceLinks(data.content, services);
+            data.content = processedContent;
+          }
+          
           setPost(data);
           setLoading(false);
           
@@ -137,7 +281,7 @@ const BlogPost = () => {
           setLoading(false);
         });
     }
-  }, [slug, parseHeadings]);
+  }, [slug, parseHeadings, services, processContentWithServiceLinks]);
 
   if (loading) {
     return (
