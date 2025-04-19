@@ -3,7 +3,7 @@
     "title": "Personal Care Services in {suburb}",
     "slug": "personal-care",
     "description": "Comprehensive personal care services in {suburb} tailored to your individual needs. Our trained support workers assist with daily activities, hygiene, medication management, and more to enhance your quality of life and independence.",
-    "image": "",
+    "image": "/assets/drinkingtea.webp",
     "category": "Daily Living Support",
     "keywords": ["personal care", "daily activities", "hygiene", "medication management", "support workers", "independent living", "self-care assistance", "daily tasks", "quality of life", "personal assistant", "caregiving", "assistance with daily life"]
   },
@@ -11,7 +11,7 @@
     "title": "Domestic Assistance Services in {suburb}",
     "slug": "domestic-assistance",
     "description": "Professional domestic assistance services in {suburb} to help maintain a clean, safe, and comfortable home environment. Our support workers assist with housekeeping, meal preparation, shopping, and other household tasks to enhance your quality of life.",
-    "image": "",
+    "image": "/assets/makingbed.webp",
     "category": "Daily Living Support",
     "keywords": ["domestic assistance", "housekeeping", "meal preparation", "shopping", "household tasks", "home environment", "home maintenance", "cleaning services", "house cleaning", "meal planning", "grocery shopping", "home help"]
   },
@@ -19,7 +19,7 @@
     "title": "Community Access Support Services in {suburb}",
     "slug": "community-access-support",
     "description": "Comprehensive community access support services in {suburb}, connecting you with community groups, activities, and essential access services. We are a community services organisation dedicated to community engagement throughout {suburb}.",
-    "image": "",
+    "image": "/assets/sydney.webp",
     "category": "Community Support",
     "keywords": ["community access", "community groups", "activities", "community engagement", "community services", "social inclusion", "community participation", "social activities", "local community", "group activities", "community integration", "social engagement"]
   },
@@ -35,7 +35,7 @@
     "title": "Respite Care Services in {suburb}",
     "slug": "respite-care",
     "description": "Reliable respite care services in {suburb} providing temporary relief for primary caregivers. Our professional respite support workers offer high-quality care for your loved one while you take a well-deserved break.",
-    "image": "",
+    "image": "/assets/carer.webp",
     "category": "Caregiver Support",
     "keywords": ["respite care", "caregiver relief", "temporary care", "primary caregivers", "respite support workers", "short term accommodation", "STA", "caregiver burnout", "caregiver support", "temporary relief", "respite services", "carer break"]
   },
@@ -43,7 +43,7 @@
     "title": "Transport Services in {suburb}",
     "slug": "transport-services",
     "description": "Reliable and accessible transport services for people with disabilities in {suburb}. Our professional drivers and specially equipped vehicles ensure safe, comfortable, and on-time transportation to appointments, activities, and community events.",
-    "image": "",
+    "image": "/assets/hero.webp",
     "category": "Mobility Support",
     "keywords": ["transport services", "accessible transport", "disability transport", "transportation", "mobility services", "equipped vehicles", "modified vehicles", "NDIS transport", "accessible driving", "disability-friendly transport", "wheelchair transport", "community transport"]
   },
@@ -51,7 +51,7 @@
     "title": "Therapy Services in {suburb}",
     "slug": "therapy-services",
     "description": "Comprehensive therapy services in {suburb} delivered by qualified professionals. Our therapy team offers physiotherapy, occupational therapy, speech therapy, and more to help you achieve your health, mobility, and independence goals.",
-    "image": "",
+    "image": "/assets/physio.webp",
     "category": "Health Services",
     "keywords": ["therapy services", "physiotherapy", "occupational therapy", "speech therapy", "allied health", "rehabilitation", "therapeutic support", "physical therapy", "therapy session", "specialized therapy", "telehealth", "therapy goals"]
   },
@@ -59,7 +59,7 @@
     "title": "Specialist Disability Accommodation (SDA) in {suburb}",
     "slug": "specialist-disability-accommodation",
     "description": "NDIS-approved Specialist Disability Accommodation in {suburb} designed for individuals with extreme functional impairment or very high support needs. Our SDA properties provide accessible, safe, and tailored living environments to enhance independence and quality of life.",
-    "image": "",
+    "image": "/assets/homecare.webp",
     "category": "Accommodation",
     "keywords": ["specialist disability accommodation", "SDA", "disability housing", "accessible accommodation", "NDIS accommodation", "high support needs", "accessible housing", "disability-friendly housing", "improved liveability", "housing solutions", "accessible homes", "disability apartments"]
   },
@@ -67,7 +67,7 @@
     "title": "SIL Services in {suburb}",
     "slug": "sil-services",
     "description": "Connect with trusted Supported Independent Living providers in {suburb} delivering specialized NDIS disability accommodation and support services.",
-    "image": "",
+    "image": "/assets/holdinglinen.webp",
     "category": "Supported Living",
     "keywords": ["SIL", "supported independent living", "NDIS accommodation", "independent living support", "disability accommodation", "long-term housing", "shared accommodation", "group homes", "disability housing", "supported living", "24/7 support", "residential care"]
   },
@@ -83,7 +83,7 @@
     "title": "Disability Home Support Services in {suburb}",
     "slug": "disability-home-support-services",
     "description": "Comprehensive in-home disability support services in {suburb} tailored to your needs. NDIS-registered provider delivering professional care and support in the comfort of your home.",
-    "image": "",
+    "image": "/assets/grandma.webp",
     "category": "Disability Support",
     "keywords": ["disability home support", "in-home disability support", "home care", "disability services", "NDIS home care", "in-home support", "at-home care", "home-based support", "disability assistance", "personalized care", "one-on-one support", "individualized care"]
   },
@@ -91,7 +91,7 @@
     "title": "Disability Services in {suburb}",
     "slug": "disability-services",
     "description": "Are you or a loved one looking for reliable, compassionate disability services in {suburb}? Our specialized in-home disability care services provide personalized support that empowers individuals to live independently while receiving expert care in the comfort of their own homes.",
-    "image": "",
+    "image": "/assets/elderlyaboriginal.webp",
     "category": "Disability Support",
     "keywords": ["disability services", "disability support services", "disability care", "NDIS services", "disability support", "NDIS providers", "registered NDIS providers", "local disability services", "quality disability support", "disability assistance", "permanent disability", "significant disability"]
   },
@@ -107,7 +107,7 @@
     "title": "Clinical Care Services in {suburb}",
     "slug": "clinical-care",
     "description": "Professional clinical care services delivered by qualified healthcare professionals in {suburb}. Comprehensive clinical support tailored to individual health needs in a caring and responsive environment.",
-    "image": "",
+    "image": "/assets/clinic.webp",
     "category": "Health Services",
     "keywords": ["clinical care", "healthcare services", "nursing care", "medical support", "clinical support", "health services", "healthcare professionals", "medical care", "qualified nurses", "clinical assessment", "health needs", "medical assistance"]
   },
@@ -115,7 +115,7 @@
     "title": "Aged Care Home Modifications & Maintenance in {suburb}",
     "slug": "aged-care-home-modifications-maintenance",
     "description": "Specialized aged care home modifications and home maintenance services for seniors in {suburb}. Reliable house repairs, maintenance, and tailored support from a trusted aged care maintenance company.",
-    "image": "",
+    "image": "/assets/grandmawhite.webp",
     "category": "Aged Care Support",
     "keywords": ["aged care", "home modifications", "seniors support", "home maintenance", "aged care support", "house repairs", "senior living", "home care package", "elderly support", "aging in place", "accessibility modifications", "seniors services"]
   }
