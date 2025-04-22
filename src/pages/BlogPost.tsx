@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ChevronRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import "./BlogPost.css"; // Import custom CSS for blog formatting
 import useDocumentTitle from "@/hooks/useDocumentTitle";
 
@@ -58,7 +58,7 @@ const TableOfContents = ({ headings }: { headings: TocHeading[] }) => {
     if (!element) return;
     
     window.scrollTo({
-      top: element.offsetTop - 20,
+      top: element.offsetTop - 80, // Increased offset to account for fixed headers
       behavior: 'smooth'
     });
   };
@@ -105,6 +105,7 @@ const BlogPost = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [headings, setHeadings] = useState<TocHeading[]>([]);
+  const contentRef = useRef<HTMLDivElement>(null);
   
   // Set the document title with a placeholder while loading
   useDocumentTitle(post ? post.title : 'Blog Post');
@@ -302,6 +303,19 @@ const BlogPost = () => {
     }
   }, [slug, parseHeadings, services, processContentWithServiceLinks]);
 
+  // Apply IDs to headings after content is rendered
+  useEffect(() => {
+    if (contentRef.current && headings.length > 0) {
+      const renderedHeadings = contentRef.current.querySelectorAll('h2, h3, h4, h5, h6');
+      
+      renderedHeadings.forEach((heading, index) => {
+        if (index < headings.length) {
+          heading.id = headings[index].id;
+        }
+      });
+    }
+  }, [headings, post?.content]);
+
   if (loading) {
     return (
       <Layout>
@@ -373,6 +387,7 @@ const BlogPost = () => {
             
             <div className="lg:w-2/3">
               <div 
+                ref={contentRef}
                 className="prose prose-lg max-w-none" 
                 dangerouslySetInnerHTML={{ __html: post.content }}
               ></div>
